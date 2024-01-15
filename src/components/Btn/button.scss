@@ -1,0 +1,20 @@
+@import '../../scss-setings/vars.scss';
+
+.button {
+  border-radius: 6px;
+  padding: 8px 18px;
+  background-color: $green;
+  font-weight: 500;
+  transition: all 0.3s ease-in;
+  color: $white;
+  display: flex;
+  align-items: center;
+  &:hover {
+    background-color: rgba($green, 0.7);
+    transition: all 0.3s ease-in;
+  }
+
+  &__svg {
+    margin-right: 6px;
+  }
+}

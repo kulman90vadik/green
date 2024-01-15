@@ -1,0 +1,42 @@
+
+@import "../../scss-setings/vars.scss";
+
+
+.navigation {
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  &__link {
+    position: relative;
+    padding: 0 2px 20px;
+    transition: all 0.3s ease-in;
+    font-weight: 500;
+    &::after {
+      position: absolute;
+      content: '';
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 3px;
+      background-color: $green;
+      transition: width 0.3s ease-in;
+    }
+    &--active {
+      color: $black;
+      transition: all 0.3s ease-in;
+      &::after {
+        width: 100%;
+        transition: width 0.3s ease-in;
+      }
+    }
+  }
+}
