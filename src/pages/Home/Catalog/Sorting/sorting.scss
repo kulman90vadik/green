@@ -1,0 +1,46 @@
+@import "../../../../scss-setings/vars.scss";
+
+.sorting {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .sorting-category {
+
+    &__list {
+      display: flex;
+      align-items: center;
+    }
+  
+    &__item {
+      &:not(:last-child) {
+        margin-right: 13px;
+      }
+    }
+  
+    &__btn {
+      border: 2px solid $green;
+      padding: 5px 14px;
+      color: $black;
+      font-weight: 500;
+      background-color: $white;
+      transition: all .3s ease;
+      &:hover {
+        background-color: rgba($green, 0.8);
+      }
+    }
+    
+    &__btn--active {
+      transition: all .3s ease;
+      background-color: $green;
+      color: $white;
+    }
+  }
+
+  .sorting-price {
+    
+  }
+
+
+}

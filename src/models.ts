@@ -8,3 +8,14 @@ export type slideData = {
   smallimages: string;
 }
 
+
+export type cardItem = {
+  id: number;
+  category: number;
+  title: string;
+  image: string;
+  price: number;
+  sale: number;
+  new: boolean
+}
+
