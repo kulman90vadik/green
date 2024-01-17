@@ -12,18 +12,16 @@ import { useSelector } from "react-redux";
 const App = () => {
   const dispatch = useAppDispatch();
   const category: number = useSelector((state: RootState) => state.catalog.category);
+  const sortId: string= useSelector((state: RootState) => state.catalog.sortId);
 
   useEffect( () => {
     
       let categoryId = category ? `category=${category}` : "";
-      console.log(categoryId);
-      // let orderId = 'hhh';
-      // let page = 'ggg'
+      let sort = sortId ? `&sortBy=price&order=${sortId}` : '';
 
-      dispatch(fetchCollection({categoryId}));
+      dispatch(fetchCollection({categoryId, sort}));
       
-      
-    }, [category])
+    }, [category, sortId])
 
   return (
     <>

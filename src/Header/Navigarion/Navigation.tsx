@@ -10,23 +10,23 @@ const links = [
 ]
 
 type Props = {
-  open: boolean;
-  setOpen: (bool: boolean) => void
+  openNavigation: boolean;
+  setOpenNavigation: (bool: boolean) => void
 }
 
-const Navigation: React.FC<Props> = ({ open, setOpen }) => {
+const Navigation: React.FC<Props> = ({ openNavigation, setOpenNavigation }) => {
 
   const activeLink = 'navigation__link navigation__link--active';
   const normalLink = 'navigation__link';
 
   return (
-    <nav className={`${open ? 'navigation navigation--active' : 'navigation'}`}>
+    <nav className={`${openNavigation ? 'navigation navigation--active' : 'navigation'}`}>
       <ul className="navigation__list">
 
         {links.map(link => {
           return (
             <li className="navigation__item" key={link.text}>
-              <NavLink to={link.link} className={({ isActive }) => isActive ? activeLink : normalLink} onClick={() => setOpen(false)}>{link.text}</NavLink>
+              <NavLink to={link.link} className={({ isActive }) => isActive ? activeLink : normalLink} onClick={() => setOpenNavigation(false)}>{link.text}</NavLink>
             </li>
           )
         })}

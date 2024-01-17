@@ -14,4 +14,23 @@
     align-items: center;
     justify-content: space-between;
   }
+
+  &__logo {
+    margin-right: 30px;
+  }
+
+  &__search {
+    margin-left: auto;
+    margin-right: 20px;
+    display: flex;
+    width: 30px;
+    height: 30px;
+  }
+
+  &__icon {
+    margin: auto;
+    width: 23px;
+    height: 20px;
+    display: block;
+  }
 }

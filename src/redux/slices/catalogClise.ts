@@ -8,9 +8,9 @@ import { cardItem } from '../../models';
 // type FetchParams = Record <string, string>;
 
 export const fetchCollection = createAsyncThunk<cardItem[], Record<string, string>>('catalog/fetchCollectionStatus', async (params) => {
-  const { categoryId } = params;
-  const { data } = await axios.get<cardItem[]>(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?${categoryId}`);
-    console.log(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?${categoryId}`);
+  const { categoryId, sort } = params;
+  const { data } = await axios.get<cardItem[]>(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?${categoryId}${sort}`);
+    // console.log(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?${categoryId}${sort}`);
     return data as cardItem[];
   }
 )
@@ -25,13 +25,15 @@ export enum Status {
 interface CatalogState {
   catalog: cardItem[];
   status: Status;
-  category: number
+  category: number;
+  sortId: string
 }
 
 const initialState: CatalogState = {
   catalog: [],
   status: Status.LOADING,
-  category: 0
+  category: 0,
+  sortId: ''
 };
 
 
@@ -42,6 +44,9 @@ export const catalogSlice = createSlice({
   reducers: {
     categoryChange: (state, index: PayloadAction<number>) => {
       state.category = index.payload;
+    },
+    sortChange: (state, id: PayloadAction<string>) => {
+      state.sortId = id.payload;
     }
   },
 
@@ -75,6 +80,6 @@ export const catalogSlice = createSlice({
   // }
 });
 
-export const { categoryChange } = catalogSlice.actions;
+export const { categoryChange, sortChange } = catalogSlice.actions;
 
 export default catalogSlice.reducer;

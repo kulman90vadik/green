@@ -12,8 +12,6 @@ const Cards = () => {
   const catalog: cardItem[] = useSelector((state: RootState) => state.catalog.catalog);
   const status = useSelector((state: RootState) => state.catalog.status);
 
-  console.log(catalog);
-
   return (
     <div className="cards">
 

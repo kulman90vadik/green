@@ -39,8 +39,54 @@
   }
 
   .sorting-price {
+    position: relative;
+    &__list {
+      position: absolute;
+      z-index: 100;
+      width: 155px;
+      top: 30px;
+      overflow: hidden;
+      transition: all 0.5s ease-in;
+      background-color: rgba($green, 0.7);
+    }
+
+    &__btn {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      width: 155px;
+      justify-content: space-between;
+      border: 2px solid $green;
+      padding: 5px 14px;
+      color: $black;
+      font-weight: 500;
+      background-color: $white;
+      transition: all .3s ease;
+      &:hover {
+        background-color: rgba($green, 0.8);
+      }
+    }
+
+    &__item {
+      padding: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    &__svg {
+      fill: $black;
+      width: 23px;
+      height: 21px;
+      transition: transform 0.3s ease-in;
+      &--active {
+        transform: rotate(180deg);
+      }
+    }
+
     
   }
+
+
 
 
 }
