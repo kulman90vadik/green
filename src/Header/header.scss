@@ -9,6 +9,11 @@
   top: 0;
   left: 0;
   background-color: $white;
+  
+  &--black {
+    background-color: rgba($black, 0.9);
+  }
+
   &__container {
     display: flex;
     align-items: center;
@@ -32,5 +37,25 @@
     width: 23px;
     height: 20px;
     display: block;
+  }
+
+  &__icon-basket {
+    margin-right: 20px;
+    position: relative;
+  }
+
+  &__count {
+    position: absolute;
+    top: -2px;
+    right: -10px;
+    background-color: #46a358;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 11px;
   }
 }

@@ -16,6 +16,7 @@ export type cardItem = {
   image: string;
   price: number;
   sale: number;
-  new: boolean
+  new: boolean;
+  btn: boolean
 }
 

@@ -8,7 +8,7 @@ import Sorting from '../Sorting/Sorting';
 
 
 const Cards = () => {
-
+  const search: string = useSelector((state: RootState) => state.search.search);
   const catalog: cardItem[] = useSelector((state: RootState) => state.catalog.catalog);
   const status = useSelector((state: RootState) => state.catalog.status);
 
@@ -29,9 +29,9 @@ const Cards = () => {
               [...Array(10)].map((item, i) => <Loader key={i} />)
             ) : (
               catalog
-                // .filter((obj: cardItem) => {
-                //   return obj.title.toLowerCase().includes(search.toLowerCase());
-                // })
+                .filter((item: cardItem) => {
+                  return item.title.toLowerCase().includes(search.toLowerCase());
+                })
                 .map((item: cardItem) => {
                   return (
                     <li className='cards__item' key={item.id}><Card item={item} key={item.id} /></li>

@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { cardItem } from '../../models';
+import { getLocalStBasket } from '../../utils/getLocalStBasket';
 
 // type FetchParams = { categoryId: string, page: string, orderId: string }
 // ODER
@@ -47,6 +48,13 @@ export const catalogSlice = createSlice({
     },
     sortChange: (state, id: PayloadAction<string>) => {
       state.sortId = id.payload;
+    },
+    btnChange: (state, obj: PayloadAction<cardItem>) => {
+      state.catalog = state.catalog.map((el) =>
+        Number(el.id) !== Number(obj.payload.id)
+          ? el
+          : { ...el, btn: !el.btn }
+      );
     }
   },
 
@@ -56,7 +64,18 @@ export const catalogSlice = createSlice({
       state.catalog = [];
     });
     builder.addCase(fetchCollection.fulfilled, (state, action) => {
-      state.catalog = action.payload;
+
+      let catalogLG: cardItem[] = getLocalStBasket();
+      for (let i = 0; i < action.payload.length; i++) {
+        const newItemIndex: number = catalogLG.findIndex(item => item.id === action.payload[i].id)
+        
+        if (newItemIndex >= 0) {     
+          state.catalog[i] = catalogLG[newItemIndex]
+        }
+        else {
+          state.catalog[i] = action.payload[i]
+        }
+      }
       state.status = Status.SUCCESS;
     });
     builder.addCase(fetchCollection.rejected, (state, action) => {
@@ -80,6 +99,6 @@ export const catalogSlice = createSlice({
   // }
 });
 
-export const { categoryChange, sortChange } = catalogSlice.actions;
+export const { categoryChange, sortChange, btnChange } = catalogSlice.actions;
 
 export default catalogSlice.reducer;
