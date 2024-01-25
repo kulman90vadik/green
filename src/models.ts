@@ -14,9 +14,13 @@ export type cardItem = {
   category: number;
   title: string;
   image: string;
+  description: string;
   price: number;
   sale: number;
   new: boolean;
-  btn: boolean
+  btn: boolean;
+  sizesCount: number;
+  images: string[]
+  sizes: string[]
 }
 

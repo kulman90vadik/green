@@ -3,6 +3,7 @@ import { cardItem } from "../../../../models";
 import "./card.scss";
 import { addToBasket } from "../../../../redux/slices/basketClise";
 import { btnChange } from "../../../../redux/slices/catalogClise";
+import { Link } from "react-router-dom";
 
 type Props = {
   item: cardItem;
@@ -34,7 +35,7 @@ const Card: React.FC<Props> = ({ item }) => {
         </div>
         <div
           className={`card__old-price ${
-            item.sale > 1 ? "card__old-price-line" : ""
+            item.sale > 1 ? "card__old-price-line" : "card__new-price"
           }`}
         >
           {new Intl.NumberFormat("de-DE", {
@@ -70,8 +71,12 @@ const Card: React.FC<Props> = ({ item }) => {
           </svg>
         </button>
       </div>
+      <Link className="card__link" to={`/item/${item.id}`} state={{btn: item.btn}}>
+        More details
+      </Link>
     </article>
   );
+
 };
 
 export default Card;

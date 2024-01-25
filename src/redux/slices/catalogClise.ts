@@ -11,7 +11,6 @@ import { getLocalStBasket } from '../../utils/getLocalStBasket';
 export const fetchCollection = createAsyncThunk<cardItem[], Record<string, string>>('catalog/fetchCollectionStatus', async (params) => {
   const { categoryId, sort } = params;
   const { data } = await axios.get<cardItem[]>(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?${categoryId}${sort}`);
-    // console.log(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?${categoryId}${sort}`);
     return data as cardItem[];
   }
 )
@@ -27,13 +26,15 @@ interface CatalogState {
   catalog: cardItem[];
   status: Status;
   category: number;
-  sortId: string
+  sortId: string;
+  price: number
 }
 
 const initialState: CatalogState = {
   catalog: [],
   status: Status.LOADING,
   category: 0,
+  price: 0,
   sortId: ''
 };
 
@@ -55,6 +56,9 @@ export const catalogSlice = createSlice({
           ? el
           : { ...el, btn: !el.btn }
       );
+    },
+    priceChange: (state, price: PayloadAction<number>) => {
+      state.price = price.payload;
     }
   },
 
@@ -99,6 +103,7 @@ export const catalogSlice = createSlice({
   // }
 });
 
-export const { categoryChange, sortChange, btnChange } = catalogSlice.actions;
+export const { categoryChange, sortChange, btnChange, priceChange } = catalogSlice.actions;
 
 export default catalogSlice.reducer;
+

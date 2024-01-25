@@ -1,0 +1,32 @@
+@import "../../../scss-setings/vars.scss";
+
+
+.sizes {
+  display: flex;
+  padding: 20px 0;
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+
+  &__btn {
+    color: $black;
+    font-weight: 700;
+    width: 35px;
+    height: 35px;
+    border: 1px solid $green;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border-radius: 50%;
+    &--green {
+      background-color: $green;
+      color: $white;
+    }
+  }
+
+}

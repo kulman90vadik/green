@@ -1,0 +1,49 @@
+@import "../../../scss-setings/vars.scss";
+
+.slider-image {
+  width: 50%;
+  display: flex;
+  &__photo {
+    width: 400px;
+    height: 411px;
+    display: flex;
+    background-color: #ccc;
+    border: 1px solid $green;
+    overflow: hidden;
+    &:hover {
+      .slider-image__image {
+        transform: scale(1.2);
+        transition: transform 0.3s ease-in;
+      }
+    }
+  }
+  
+  &__image {
+    transition: transform 0.3s ease-in;
+    object-fit: cover;
+    height: auto;
+    cursor: pointer;
+  }
+
+  &__list {
+    height: 411px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 25px;
+  }
+
+  &__item{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    border: 1px solid $green;
+    cursor: pointer;
+  }
+
+  &__small-img {
+    object-fit: cover;
+    height: auto;
+    width: 100%;
+  }
+}

@@ -1,0 +1,45 @@
+@import "../../scss-setings/vars.scss";
+
+.page-item {
+
+  padding: 200px 0;
+  &__article {
+    display: flex;
+  }
+
+  &__info {
+     width: 50%;
+  }
+
+  .message {
+    font-size: 34px;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 29px;
+    color: $black;
+    margin-bottom: 20px;
+    display: block;
+    font-weight: 600;
+  }
+
+  &__price {
+    font-weight: 700;
+    color: $green;
+    font-size: 22px;
+  }
+
+  &__btn {
+    border: 1px solid $green;
+    color: $green;
+    font-weight: 600;
+    padding: 4px 20px;
+    border-radius: 5px;
+  }
+  &__btn--active {
+    background-color: $green;
+    color: white;
+  }
+   
+}

@@ -34,6 +34,8 @@
   &__price {
     display: flex;
     align-items: center;
+    padding-bottom: 10px;
+    padding-left: 10px;
   }
 
   &__new,
@@ -54,16 +56,24 @@
     background-color: rgb(250, 64, 64);
   }
 
+  &__title {
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    font-weight: 600;
+    font-size: 20px;
+  }
   &__new-price {
     color: $black;
-  }
-  
-  &__old-price {
-
+    margin-right: 5px;
+    padding: 2px;
+    font-weight: 600;
   }
 
   &__old-price-line {
     text-decoration: line-through;
+    background-color: rgb(250, 64, 64);
+    padding: 2px;
   }
   
   &__icons {
@@ -140,6 +150,25 @@
       opacity: 1;
       visibility: visible;
     }
+    .card__link {
+      transition: transform 0.3s ease-in;
+      transform: translateX(0);
+      z-index: 55;
+    }
+  }
+
+  &__link {
+    position: absolute;
+    background-color: $green;
+    letter-spacing: 3px;
+    color: $white;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    padding: 6px;
+    transform: translateX(-120%);
+    transition: transform 0.3 ease-in;
   }
 
 }

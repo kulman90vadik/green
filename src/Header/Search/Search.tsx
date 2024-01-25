@@ -2,7 +2,8 @@ import "./search.scss";
 import { updateSearchValue, closeSearchHandler } from "../../redux/slices/searchClise";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
+import debounce from "lodash.debounce";
 
 type Props = {
   openSearch: boolean;
@@ -10,14 +11,30 @@ type Props = {
 };
 
 const Search: React.FC<Props> = ({ setOpenSearch, openSearch }) => {
+  const [valueSearch, setValueSearch] = useState('');
   const refInput = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const search: string = useSelector((state: RootState) => state.search.search);
 
   const closeSearch = () => {
     dispatch(closeSearchHandler());
+    setValueSearch('');
     refInput.current?.focus();
   }
+
+
+  // ----------------- debounce
+  const searchHandler = useCallback(
+    debounce((value: string) => {
+      dispatch(updateSearchValue(value))
+    }, 600),
+    [],
+  )
+  const clickSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValueSearch(e.target.value);
+    searchHandler(e.target.value);
+  }
+// -----------------debounce
 
   return (
     <div className={`${openSearch ? "search search--active" : "search"}`}>
@@ -27,8 +44,8 @@ const Search: React.FC<Props> = ({ setOpenSearch, openSearch }) => {
           type="text"
           className="search__input"
           placeholder="Search"
-          value={search}
-          onChange={(e) => dispatch(updateSearchValue(e.target.value))}
+          value={valueSearch}
+          onChange={(e) => clickSearchHandler(e)}
         />
         {search ? (
           <button

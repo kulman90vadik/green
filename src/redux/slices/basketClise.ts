@@ -34,11 +34,12 @@ export const basketSlice = createSlice({
         // }, 0)
       }
     },
+    
 
-    // delCartBasket: (state, obj:PayloadAction<ObjectItem>) => {
-    //   state.basket = state.basket.filter((elem) => elem.id !== obj.payload.id);
-    //   state.count = state.count - 1;
-    // },
+    delCartBasket: (state, obj:PayloadAction<cardItem>) => {
+      state.basket = state.basket.filter((elem) => elem.id !== obj.payload.id);
+      state.count = state.count - 1;
+    }
 
     // plusTotalPrice: (state, obj:PayloadAction<ObjectItem>) => {
     //   state.totalPrice = state.totalPrice + obj.payload.price
@@ -54,9 +55,7 @@ export const basketSlice = createSlice({
   },
 });
 
-export const {
-  addToBasket,
-  // delCartBasket,
+export const { addToBasket, delCartBasket, 
   // plusTotalPrice,
   // minusTotalPrice,
   // delPrice,
