@@ -63,7 +63,7 @@ export const catalogSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(fetchCollection.pending, (state, action) => {
+    builder.addCase(fetchCollection.pending, (state) => {
       state.status = Status.LOADING;
       state.catalog = [];
     });
@@ -82,7 +82,7 @@ export const catalogSlice = createSlice({
       }
       state.status = Status.SUCCESS;
     });
-    builder.addCase(fetchCollection.rejected, (state, action) => {
+    builder.addCase(fetchCollection.rejected, (state) => {
       state.status = Status.ERROR;
       state.catalog = []
     });

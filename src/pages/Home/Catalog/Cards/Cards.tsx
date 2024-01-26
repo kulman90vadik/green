@@ -27,7 +27,7 @@ const Cards = () => {
                 <div>&#128554;</div>
               </div>
             ) : status === "loading" ? (
-              [...Array(10)].map((item, i) => <Loader key={i} />)
+              [...Array(10)].map((_, i) => <Loader key={i} />)
             ) : (
               catalog
                 .filter(item => price <= (item.price - (item.price * item.sale) / 100))
