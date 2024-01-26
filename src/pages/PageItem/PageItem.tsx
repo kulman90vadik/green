@@ -20,6 +20,7 @@ const PageItem: React.FC = () => {
   const [btnColor, setBtnColor] = useState(state.btn);
   const [cardItem, setCardItem] = useState<cardItem>();
   const [loading, setLoading] = useState("");
+  // const [countSize, setCountSize] = useState<number>(0);
   const [countSize, setCountSize] = useState<number>(0);
 
   const fetchCart = useCallback(async () => {
