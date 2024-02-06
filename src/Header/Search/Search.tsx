@@ -2,7 +2,7 @@ import "./search.scss";
 import { updateSearchValue, closeSearchHandler } from "../../redux/slices/searchClise";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 
 type Props = {
@@ -10,11 +10,19 @@ type Props = {
   setOpenSearch: (bool: boolean) => void;
 };
 
+
+
+
+
+
 const Search: React.FC<Props> = ({ setOpenSearch, openSearch }) => {
   const [valueSearch, setValueSearch] = useState('');
   const refInput = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const search: string = useSelector((state: RootState) => state.search.search);
+  refInput.current?.focus();
+
+  // const refCloseSearch = useRef<HTMLDivElement>(null);
 
   const closeSearch = () => {
     dispatch(closeSearchHandler());
@@ -36,8 +44,35 @@ const Search: React.FC<Props> = ({ setOpenSearch, openSearch }) => {
   }
 // -----------------debounce
 
+
+  // useEffect(() => {
+  //   // const clickSortHandler: EventListener  = (event: MouseEventInit) => {
+  //   const clickSortHandler = (event: MouseEvent) => {
+  //     const e = event as MouseEvent;
+
+
+  //     console.log(refCloseSearch.current);
+  //     if(refCloseSearch.current) {
+  //       console.log(e.composedPath().includes(refCloseSearch.current));
+  //     }
+
+      
+  //     // if (!refCloseSearch.current) {
+  //     if (refCloseSearch.current && e.composedPath().includes(refCloseSearch.current)) {
+  //       console.log('ne')
+  //     } else {
+  //       setOpenSearch(false);
+  //     }
+  //   };
+  //   document.body.addEventListener("click", clickSortHandler);
+  //   return () => {
+  //     document.body.removeEventListener("click", clickSortHandler);
+  //   };
+  // }, []);
+
+
   return (
-    <div className={`${openSearch ? "search search--active" : "search"}`}>
+    <div className={`${openSearch ? "search search--active" : "search"}`} >
       <div className="search__info">
         <input
           ref={refInput}

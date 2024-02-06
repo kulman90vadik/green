@@ -14,8 +14,31 @@ const Header = () => {
   const location = useLocation();
   const basket = useSelector((state: RootState) => state.basket.basket);
   const count = useSelector((state: RootState) => state.basket.count);
+  const refCloseSearch = useRef<HTMLDivElement>(null);
 
   const isMounted = useRef(false);
+
+
+  // useEffect(() => {
+  //   // const clickSortHandler: EventListener  = (event: MouseEventInit) => {
+  //   const clickSortHandler = (event: MouseEvent) => {
+  //     const e = event as MouseEvent;
+  //     console.log(refCloseSearch.current);
+
+      
+  //     // if (!refCloseSearch.current) {
+  //     if (refCloseSearch.current && !e.composedPath().includes(refCloseSearch.current)) {
+  //       setOpenSearch(false);
+  //     } else {
+  //       console.log('ne')
+  //     }
+  //   };
+  //   document.body.addEventListener("click", clickSortHandler);
+  //   return () => {
+  //     document.body.removeEventListener("click", clickSortHandler);
+  //   };
+  // }, []);
+
 
   useEffect(() => {
     if (isMounted.current) {
@@ -27,7 +50,8 @@ const Header = () => {
 
   return (
     <>
-      <header
+      <header 
+        ref={refCloseSearch}
         className={`header ${
           location.pathname === "/login" ? "header--black" : "header"
         }`}
@@ -93,9 +117,9 @@ const Header = () => {
             </GreenButton>
           </Link>
         </div>
+      <Search setOpenSearch={setOpenSearch} openSearch={openSearch} />
       </header>
 
-      <Search setOpenSearch={setOpenSearch} openSearch={openSearch} />
     </>
   );
 };

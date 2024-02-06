@@ -2,9 +2,16 @@
 
 .filter {
   width: 30%;
-  padding: 50px 0;
-  height: 400px;
+  padding: 30px 0;
   margin-right: 3%;
+  @media screen and (max-width: 1220px) {
+    width: 25%;
+  }
+  @media screen and (max-width: 720px) {
+    padding-bottom: 0;
+    width: 100%;
+    margin-right: 0;
+  }
 
   .filter-price {
     margin-bottom: 25px;
@@ -116,6 +123,12 @@
 
   &__banner {
     height: 470px;
+    @media screen and (max-width: 1220px) {
+      height: 320px;
+    }
+    @media screen and (max-width: 720px) {
+      display: none;
+    }
   }
 
   &__link {
