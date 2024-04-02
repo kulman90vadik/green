@@ -53,6 +53,7 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 				decrement={() => decrement(obj)}
 				increment={() => increment(obj)}
 				count={count}
+				objId={obj.id}
 			/>
 
 			<span className='basket-cards__total basket-cards__col'>

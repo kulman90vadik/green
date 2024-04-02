@@ -1,0 +1,584 @@
+const {push, replace} = useRouter()
+const {asPath, pathname} = useRouter()
+onClick={() => push('/)}
+onClick={() => replace('/)}
+
+
+npx create-next-app
+src no
+router yes
+
+          app
+             about
+                  page.tsx
+             contact
+                  page.tsx
+
+
+на уровне с app создаём components
+в lotyout header footer main metadata
+
+app
+   blog
+       page.tsx
+       [id]
+          page.tsx    -> type Props = {params: {id: string;}}
+                      -> const Post({params: {id}}: Props) {
+                        return <div>{id}</div>
+                      }
+
+
+
+    children: React.ReactNode 
+
+
+<!-- ////////////meta data////////////// -->
+    в динамичских страницах
+    params передаётся в компонент так же
+    export function generateMetadata({params: {id}}: Props) {
+      return {
+        title: id
+      }
+    }
+
+    meta data в обычных страницах
+    export const metadata: Metadata = {
+      title: "About title"
+    }
+<!-- ///////////////получение данных в странице блог//////////////// -->
+
+app
+   posts
+       page.tsx
+          async function getData() {
+            const respons = await FETCH(`https://jsonplaceholder.typicode.com/posts`)
+            return respons.json()
+          }
+
+в next может быть async func
+        export default async function Posts() {
+          const posts = await getData();
+          return(
+            <>
+              {posts.map(post => Link href={`/blog/${post.id}`})}
+            </>
+          )
+        }
+
+
+
+'use client' --- тогда могу использовать хукииии
+
+<!-- ///////////////КЭЩИРОВАНИЕ ДАННЫХ ПРИ ХАПРОСЕ FETCH//////////////// -->
+        запросы будут не так часто происходить 1 раз в минуту
+          async function getData() {
+            const respons = await FETCH(`https://jsonplaceholder.typicode.com/posts`, {
+              next: {
+                revalidate: 60
+              }
+            })
+
+            return respons.json()
+
+          }
+
+<!-- /////////////// в динамической стр.ПОЛУЧЕНИЕ ДАННЫХ ЧЕРЕЗ id ПРИ ХАПРОСЕ FETCH//////////////// -->
+        запросы будут не так часто происходить 1 раз в минуту
+          async function getData(id: string) {
+            const respons = await FETCH(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+              next: {
+                revalidate: 60
+              }
+            })
+            return respons.json()
+          }    
+
+              export function generateMetadata({params: {id}}: Props) {
+                const post = await getData(id);
+                return {
+                  title: post.title
+                }
+              } 
+
+        type Props = {
+          params: {
+            id: string
+          }
+        }      
+
+          export default async function Post({params: {id}}: Props) {
+            const post = await getData(id);
+            return <h2>{post.title}</h2>
+          }
+
+<!-- ////////////loading/////////////// -->
+app
+   posts
+       page.tsx
+       loading.tsx
+        export default function LoadingPost() {
+            return <h2>Loading.............</h2>
+        }
+
+<!-- ////////////Error/////////////// -->
+'use client'
+app
+   posts
+       page.tsx
+       error.tsx
+        export default function ErrorPost({error}: {error: Error}) {
+            return <h2>Oooppppps!!! {error.message}</h2>
+        }
+
+1 ВАРИАНТ
+<!-- ///////////////Navigation 'use client'/////////// -->
+header внутри навигация и навигация будет клиентской так как пользователь взаимодействует с ней.
+Header.tsx
+  const navItems = [
+    {label: "home", href="/",}
+    {label: "home", href="/",}
+    {label: "home", href="/",}
+  ]
+
+  const Header: = () => {
+    <Navigation navLinks={navItems}>
+  }
+
+
+Navigation.tsx
+  'use client'
+  import {usePathname} from 'next/navigation'
+  type NavLink = {
+      label: string
+      href: string
+  }
+  type Props = {
+      navLinks: NavLink[]
+  }
+
+  const Navigation:FC<Props> = (navLinks) => {
+    const pathname = usePathname();
+    return(
+     {navLinks.map(punkt => {
+					return (
+						<li className={styles.item} key={punkt.link}>
+							<Link
+								className={`${styles.link} ${punkt.link === pathname ? styles.active : styles.link}`}
+								href={punkt.link}
+							>
+								{punkt.title}
+							</Link>
+						</li>
+					)
+				})}
+    )
+  }
+
+<!-- ///////////////страница поиск -- поиск по title /////////// -->
+'use client' так как будем искать и использовать хуки...
+             поэтому нельзя функции использовать async
+страница например каталог
+'use client'
+обычная react страница с хуками
+
+2 ВАРИАНТ
+установка zustand
+
+
+
+(info) группировка роутов --- самого info не видно будет.
+
+-------------------------------
+
+можно так же добавлеять к чилдрену старинцы
+@map - папкка
+в лояут 
+export default function Loayut({children, map}: {childern: React.ReactNode, map: React.ReactNode,}) {
+  return (
+    <>
+    {map}
+    {childern}
+
+    </>
+  )
+}
+
+
+
+
+
+--------------------
+[slug]
+  page.tsx
+
+  export async function generateStaticParams() {
+    const posts = await fetch('https://.../posts').then((res) => res.json())
+  
+    return posts.map((post) => ({
+      slug: post.slug.replace(/\s+/g, '-'), ----  регулярное выражение добавляющее тире вместо пробелов
+    }))
+  }
+
+  [slug]
+    page.tsx    -> type Props = {params: {slug: string;}}
+                -> const Post({params: {slug}}: Props) {
+                  return <div>{slug}</div>
+                }
+
+
+ npx json-server --watch db.json --port 3005
+
+
+ ПАРАЛЕЛЬНЫЕ РОУТЕРЫ
+
+ app
+    about
+    info    
+        page
+            это страница инфо
+            не нужно оборачивать компонент
+        @team
+            page                
+        lotyout
+            export const metadata: Metadata = {
+              title: "Info title"
+            }
+            export default function LoayutInfo({children, team}:
+             {childern: React.ReactNode,
+              team: React.ReactNode,}) {
+                return (
+                  <>
+                    {childern} === это страница info её содержимое
+                    {team}
+                  </>
+                )
+            }    
+
+
+----------------------------
+перехватывающие РОУТЕРЫ
+
+app
+    info
+      page есть ссылка на '/login' переход будет идти на папку (..)login
+       а не на папку на уровне с info это перехват
+       но если перезагрузить страницу то будет папка уже на уровне с info
+       две точки означают поднятся выше и перебить папку login
+       и (..)(..) на два уровня выше
+      (..)login - папкка
+        page
+    login
+      page
+
+--------------------
+[...posts].sort(a, b) => a[title].localeCompare(b[title])
+
+-----------------
+active classssss
+
+const App 
+  button onclick={() => setOpen(true)}
+  button
+  Modal open={open} setOpen={setOpen}
+  Modal
+
+const Modal {childrn, open setOpen}
+  const linkClass = [styles.link]
+  if(open) linkClass.push(styles.active)
+
+  return (
+    div className={link.loin('')} onClick={() => setOpen(false)} это черная область
+
+      div onClick={(e) => e.stopPropagation()}
+        {childrn} 
+      div
+
+    div
+  )
+
+
+------------------------REACT----------------------
+
+  нужно очищать
+   UseEffect(() => {
+
+
+    return(
+
+    )
+   })
+
+
+-------------хук для получения данных и обработка их----------------
+
+const[fetchPosts, isPostsLoading, postError] = useFetching (async () => {
+  const posts = await PostService.getAll()
+  setPosts(posts)
+})
+
+useEffect (() => {
+  fetchPosts()
+}, [])
+
+export default class PostService {
+  static async getAll() {
+    const res = await axios.get('.......')
+    return res.data
+  }
+}
+
+export const useFetching = (callback) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  cost fetching = async () => {
+    try {
+      setLoading(true)
+      await callback()
+    }
+    catch (e) {
+      setError(e.message)
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
+  return [fetching, isLoading, error]
+}
+
+-------------хук для получения данных и обработка их ID----------------
+const params = useParams()
+const [post, setPost] = useState(null)
+const[fetchPosts, isPostsLoading, postError] = useFetching (async (id) => {
+  const posts = await PostService.getById(id)
+  setPosts(posts.data)
+})
+
+useEffect (() => {
+  fetchPosts(params.id)
+}, [])
+
+export default class PostService {
+  static async getById() {
+    const res = await axios.get('.......')
+    return res.data
+  }
+}
+
+export const useFetching = (callback) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  cost fetching = async () => {
+    try {
+      setLoading(true)
+      await callback()
+    }
+    catch (e) {
+      setError(e.message)
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
+  return [fetching, isLoading, error]
+}
+
+fetchPosts - 
+isPostsLoading - загрузка
+postError - если ошибка пришла
+
+
+------------pagination json placholder--------------
+
+const[totalPage, setTotalPage] = useState(0)
+когда мы получаем ответ при запросасе в ввиде response
+const[limit, setLimit] = useState(10)
+const[page, setPage] = useState(1)
+
+const[fetchPosts, isPostsLoading, postError] = useFetching (() => {
+  const posts = await PostService.getAll(limit, page)
+  let r = response.headers['x-total-count']
+  setTotalPage(Math.ceil(r / limit)) ---- это будет сколько страниц
+  setPosts(posts.data)
+})
+
+useEffect (() => {
+  fetchPosts()
+}, [page])
+
+export default class PostService {
+  static async getAll(limit = 10, number = 1) {
+    const res = await axios.get('.......', {
+      params: {
+        _limit: limit,
+        _page: page
+      }
+    })
+    return res
+  }
+}
+    заполняем массивом
+    let result = []
+    for(let i = 0; i < totalPage; i++) {
+      result.push(i + 1)
+    }
+    return result
+
+
+export const useFetching = (callback) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  cost fetching = async () => {
+    try {
+      setLoading(true)
+      await callback()
+    }
+    catch (e) {
+      setError(e.message)
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
+  return [fetching, isLoading, error]
+}
+
+теперь выводим под контентом наши кнопки с номерами.
+{result.map(number => 
+  <button
+  onClick={() => setPage(p)}
+  className={number === p ? 'active' : 'noactive'}
+  >{number}<button>)
+}
+
+
+БЕЗ УЧАСТИЯ лИНКА ПЕРЕВОДИТЬ НА СТРАНИЦУ
+const  router = useHistory() => есть много чего go / goBack / push / location (pathname)
+button onClick={() => router.push('/posts/${props.post.id}')}
+
+на странице одного поста вызываем 
+const params = useParams() => params.id - number
+
+
+
+-----------poute без большого количества награмождения --------------
+const App
+<>
+    <Header />
+    <Routes>
+      {
+        routes.map(route => {
+          <Route 
+            element={route.element}
+            path={route.path}
+            exact={route.exact}
+           />
+        })
+      }
+     
+    </Routes>
+</>
+
+router
+  index
+    import About from '../pages/About'
+    import Home from '../pages/Home'
+    import Skills from '../pages/Skills'
+
+    export const routes = [
+      {path: '/about', element: About, exact: true},
+      {path: '/home', element: Home, exact: true},
+      {path: '/skills', element: Skills, exact: true}
+    ]
+
+----------- CONTEXT plus авторизация --------------
+
+context 
+  index
+    import {createContext} from 'react'
+    export const AuthContext = createContext(null)
+app.js
+     import { AuthContext } from '.../'
+
+     const[isAuth, setIsAuth] = useState(false)
+     const[isLoading, setIsLoading] = useState(false) - пока идёт запрос на проверку localstorage
+
+     useEffect(() => {
+      if(localStorage.getItem(auth)) {
+        setIsAuth(true)
+      }
+      setIsLoading(true)
+     }, [])
+
+     обернуть browserrouter
+     <AuthContext.Provider value={isAuth, setIsAuth, isLoading}>
+        содержимое App элемента
+     </AuthContext.Provider>
+
+router
+  index
+    export const public = [
+      {path: '/login', element: Login, exact: true},
+    ] 
+
+    export const private = [
+      {path: '/about', element: About, exact: true},
+      {path: '/home', element: Home, exact: true},
+      {path: '/skills', element: Skills, exact: true}
+    ] 
+
+const AppRouter
+  const {isAuth, isLoading} = useContext(AuthContext)    
+
+  if(isLoading) {
+    return <Loader/>
+  } 
+
+  isAuth 
+
+    ?
+
+    <Routes>
+          {
+            private.map(route => {
+              <Route 
+                element={route.element}
+                path={route.path}
+                exact={route.exact}
+              />
+            })
+          }
+    </Routes>
+
+    :
+
+    <Routes>
+          {
+            public.map(route => {
+              <Route 
+                element={route.element}
+                path={route.path}
+                exact={route.exact}
+              />
+            })
+          }
+    </Routes>
+
+теперь можно в форме при заполнении полей менять setIsAuth и менятся будут РОУТы
+и 
+setIsAuth(true)
+localStorage.setItem('auth', 'true')
+
+и есть кнопка для вывода
+по нажатию меняем так же
+setIsAuth(false)
+localStorage.removeItem('auth')
+
+
+
+_?????????React JS фундаментальный курс от А до Я`????????
+_________плавная подгрузка постов__________________  2 : 48 
+
+
+
+
+{`${styles.btn} ${card.btnAddToCard ? styles.active : ''}`}

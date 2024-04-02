@@ -13,6 +13,9 @@ const Cards = () => {
   const price: number = useSelector((state: RootState) => state.catalog.price);
   const status = useSelector((state: RootState) => state.catalog.status);
 
+
+  
+
   return (
     <div className="cards">
 

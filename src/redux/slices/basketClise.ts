@@ -27,7 +27,11 @@ export const basketSlice = createSlice({
         state.count = state.count - 1;
       } else {
         state.count = state.count + 1;
-        state.basket = [...state.basket, { ...obj.payload, btn: true }]; //????
+        state.basket = [...state.basket, { 
+          ...obj.payload,
+          btn: true,
+          counter: 0
+        }]; //????
 
         state.totalPrice = state.basket.reduce((acc, currentValue) =>{
           return acc + currentValue.price - (currentValue.price * currentValue.sale) / 100

@@ -20,7 +20,8 @@ export type cardItem = {
   new: boolean;
   btn: boolean;
   sizesCount: number;
-  images: string[]
-  sizes: string[]
+  images: string[];
+  sizes: string[];
+  counter: number
 }
 
