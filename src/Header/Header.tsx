@@ -17,17 +17,14 @@ const Header = () => {
   const count = useSelector((state: RootState) => state.basket.count);
   const refCloseSearch = useRef<HTMLDivElement>(null);
 
-  const isMounted = useRef(false);
-
-
-
-  useEffect(() => {
-    if (isMounted.current) {
-      const json = JSON.stringify(basket);
-      localStorage.setItem("cart", json);
-    }
-    isMounted.current = true;
-  }, [basket]);
+  // const isMounted = useRef(false);
+  // useEffect(() => {
+  //   if (isMounted.current) {
+  //     const json = JSON.stringify(basket);
+  //     localStorage.setItem("cart", json);
+  //   }
+  //   isMounted.current = true;
+  // }, [basket]);
 
   return (
     <>
@@ -63,9 +60,14 @@ const Header = () => {
           </Link>
 
           <Login />
+
+          <button className={openNavigation ? 'header__burger header__burger--active' : 'header__burger'} onClick={() => setOpenNavigation(!openNavigation)}>
+            <span></span><span></span><span></span>
+          </button>
           
         </div>
       <Search setOpenSearch={setOpenSearch} openSearch={openSearch} />
+
       </header>
 
     </>

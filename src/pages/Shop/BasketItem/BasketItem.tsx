@@ -1,23 +1,52 @@
 import { cardItem } from '../../../models'
 import '../basket.scss'
 import { useDispatch } from 'react-redux'
-import {
-	delCartBasket,
-	delPrice,
-	minusTotalPrice,
-	plusTotalPrice
-} from '../../../redux/slices/basketClise'
+import {delCartBasket,delPrice,	minusTotalPrice,plusTotalPrice} from '../../../redux/slices/basketClise'
 import { btnChange } from '../../../redux/slices/catalogClise'
 import Counter from '../Counter/Counter'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { RootState } from '../../../redux/store'
+import { useSelector } from 'react-redux'
+import { getLocalStBasket } from '../../../utils/getLocalStBasket'
 
 type BasketProps = {
 	obj: cardItem
 }
 
 const BasketItem: React.FC<BasketProps> = ({ obj }) => {
+	const basket: cardItem[] = useSelector((state: RootState) => state.basket.basket)
 	const dispatch = useDispatch()
-	const [count, setCount] = useState(1)
+	const [count, setCount] = useState(obj.counter)
+	const isMounted = useRef(false);
+
+
+// useEffect(() => {
+// 	const basketlo: cardItem[] = getLocalStBasket()
+// 	let id = basketlo.map((item) => {
+// 		if(obj.id === item.id) {
+// 			console.log(item.counter);
+// 			return item.counter
+// 		}	
+// 	})
+// 	// console.log(id);
+// }, [basket, count])
+
+
+// useEffect(() => {
+	// if (isMounted.current) {
+
+		let newArr = basket.map((item: cardItem) => {
+			if(item.id === obj.id) { return {...item, counter: count}}
+			else { return item}
+		})
+		const json = JSON.stringify(newArr);
+		localStorage.setItem("cart", json)
+	// }
+	// isMounted.current = true;
+// }, [basket, count]);
+
+
+
 	let limit = 1
 	const decrement = (obj: cardItem) => {
 		if (count > limit) {
@@ -49,11 +78,14 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 				}).format(obj.price - (obj.price * obj.sale) / 100)}
 			</span>
 
+{/* React.useMemo(() => {
+
+}, []) */}
 			<Counter
 				decrement={() => decrement(obj)}
 				increment={() => increment(obj)}
 				count={count}
-				objId={obj.id}
+				// objId={obj.id}
 			/>
 
 			<span className='basket-cards__total basket-cards__col'>

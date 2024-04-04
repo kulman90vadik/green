@@ -11,7 +11,7 @@ const links = [
 
 type Props = {
   openNavigation: boolean;
-  setOpenNavigation: (bool: boolean) => void
+  setOpenNavigation: (bool: boolean) => void;
 }
 
 const Navigation: React.FC<Props> = ({ openNavigation, setOpenNavigation }) => {

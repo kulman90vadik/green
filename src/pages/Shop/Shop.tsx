@@ -28,9 +28,11 @@ const Shop = () => {
 								<div className='basket__top-item'></div>
 							</div>
 							<ul className='basket-cards'>
+
 								{basket.map((item: cardItem) => {
 									return <BasketItem key={item.id} obj={item} />
 								})}
+								
 							</ul>
 						</div>
 

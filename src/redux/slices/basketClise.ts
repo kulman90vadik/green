@@ -18,6 +18,7 @@ export const basketSlice = createSlice({
   name: "basket",
   initialState,
 
+  
   reducers: {
     addToBasket: (state, obj: PayloadAction<cardItem>) => {
       if (state.basket.find((item) => item.id === obj.payload.id)) {
@@ -30,7 +31,7 @@ export const basketSlice = createSlice({
         state.basket = [...state.basket, { 
           ...obj.payload,
           btn: true,
-          counter: 0
+          counter: 1
         }]; //????
 
         state.totalPrice = state.basket.reduce((acc, currentValue) =>{
