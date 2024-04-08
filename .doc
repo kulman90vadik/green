@@ -582,5 +582,19 @@ _________плавная подгрузка постов__________________  2 : 4
 
 
 
-
+???????????класс выбор ????????
 {`${styles.btn} ${card.btnAddToCard ? styles.active : ''}`}
+
+
+------------ОЧИСТКА -----------------
+useEffect(() => {
+  const timeout = setTimeout(() => {
+    setData(prev => ({...prev, isLoading: false}))
+  }, 2000)
+
+  return () => {
+    clerTimeout(timeout)
+  }
+}, [])
+
+

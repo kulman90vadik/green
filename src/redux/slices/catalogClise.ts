@@ -3,7 +3,7 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { cardItem } from '../../models';
 import { getLocalStBasket } from '../../utils/getLocalStBasket';
-import { getLocalStFavorites } from '../../utils/getLocalStFavorites';
+// import { getLocalStFavorites } from '../../utils/getLocalStFavorites';
 import { getAll } from '../../utils/getAll';
 
 // type FetchParams = { categoryId: string, page: string, orderId: string }

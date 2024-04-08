@@ -2,7 +2,7 @@ import "./search.scss";
 import { updateSearchValue, closeSearchHandler } from "../../redux/slices/searchClise";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 
 type Props = {

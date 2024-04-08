@@ -4,7 +4,7 @@ import {createContext} from 'react'
 // type AuthContextType = boolean | string
 
 type AuthContextType = {
-  setIsAuth: (i: boolean) => void;
+  setIsAuth: (i: boolean) => void
   isAuth: boolean
 }
 

@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux'
-import { cardItem } from '../../../models'
-import { RootState } from '../../../redux/store'
+// import { useSelector } from 'react-redux'
+// import { cardItem } from '../../../models'
+// import { RootState } from '../../../redux/store'
 import './counter.scss'
-import { useEffect, useMemo, useRef } from 'react'
+// import { useEffect, useMemo, useRef } from 'react'
 import React from 'react'
 
 type Props = {

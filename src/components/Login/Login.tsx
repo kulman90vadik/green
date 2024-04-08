@@ -2,12 +2,20 @@
 import styles from './login.module.scss'
 import { useState, useContext } from 'react'
 import Modal from '../Modal/Modal'
-import { AuthContext } from "../../context/index";
+import {AuthContext}  from "../../context/index";
+
+// type AuthContextType = {
+//   setIsAuth: (i: boolean) => void
+//   isAuth: boolean
+// }
 
 const Login = () => {
+	 // @ts-ignore:
 	const {isAuth, setIsAuth} = useContext(AuthContext);
+
 	const [modal, setModal] = useState(false)
   
+
 	const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsAuth(true)

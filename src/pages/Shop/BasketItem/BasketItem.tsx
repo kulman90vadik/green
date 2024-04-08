@@ -4,17 +4,17 @@ import { useDispatch } from 'react-redux'
 import {delCartBasket,delPrice,	minusTotalPrice,plusTotalPrice} from '../../../redux/slices/basketClise'
 import { btnChange } from '../../../redux/slices/catalogClise'
 import Counter from '../Counter/Counter'
-import { useEffect, useRef, useState } from 'react'
-import { RootState } from '../../../redux/store'
-import { useSelector } from 'react-redux'
-import { getLocalStBasket } from '../../../utils/getLocalStBasket'
+import { useState } from 'react'
+// import { RootState } from '../../../redux/store'
+// import { useSelector } from 'react-redux'
+// import { getLocalStBasket } from '../../../utils/getLocalStBasket'
 
 type BasketProps = {
 	obj: cardItem
 }
 
 const BasketItem: React.FC<BasketProps> = ({ obj }) => {
-	const basket: cardItem[] = useSelector((state: RootState) => state.basket.basket)
+	// const basket: cardItem[] = useSelector((state: RootState) => state.basket.basket)
 	const dispatch = useDispatch()
 	const [count, setCount] = useState(obj.counter)
 	// const isMounted = useRef(false);
