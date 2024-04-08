@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { cardItem } from '../../models';
-import { getLocalStBasket } from '../../utils/getLocalStBasket';
+// import { getLocalStBasket } from '../../utils/getLocalStBasket';
 // import { getLocalStFavorites } from '../../utils/getLocalStFavorites';
 import { getAll } from '../../utils/getAll';
 
@@ -79,7 +79,7 @@ export const catalogSlice = createSlice({
     builder.addCase(fetchCollection.fulfilled, (state, action) => {
 
      
-      let catalogLG: cardItem[] = getLocalStBasket();
+      // let catalogLG: cardItem[] = getLocalStBasket();
 
       let newNEw = getAll();
       console.log(newNEw);
