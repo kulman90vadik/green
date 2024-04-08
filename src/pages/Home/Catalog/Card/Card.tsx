@@ -2,8 +2,9 @@ import { useDispatch } from "react-redux";
 import { cardItem } from "../../../../models";
 import "./card.scss";
 import { addToBasket } from "../../../../redux/slices/basketClise";
-import { btnChange } from "../../../../redux/slices/catalogClise";
+import { btnChange, favoritesBtnChange } from "../../../../redux/slices/catalogClise";
 import { Link } from "react-router-dom";
+import { addToFavorites } from "../../../../redux/slices/favoritesClise";
 
 type Props = {
   item: cardItem;
@@ -16,6 +17,11 @@ const Card: React.FC<Props> = ({ item }) => {
   const addBasket = (obj: cardItem) => {
     dispatch(addToBasket(obj));
     dispatch(btnChange(obj));
+  };
+
+  const addFavorites = (obj: cardItem) => {
+    dispatch(addToFavorites(obj));
+    dispatch(favoritesBtnChange(obj));
   };
 
   return (
@@ -48,7 +54,9 @@ const Card: React.FC<Props> = ({ item }) => {
       {item.sale > 1 && <div className="card__sale">{`-${item.sale}%`}</div>}
 
       <div className="card__icons">
-        <button className="card__icon btn-reset" type="button">
+        <button 
+         className={`card__icon btn-reset ${item.favoritesBtn ? "card__icon--active" : ""}`}
+        type="button" onClick={() => addFavorites(item)}>
           <svg
             className="card__svg"
             viewBox="0 0 20 20"

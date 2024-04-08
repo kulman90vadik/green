@@ -3,6 +3,8 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { cardItem } from '../../models';
 import { getLocalStBasket } from '../../utils/getLocalStBasket';
+import { getLocalStFavorites } from '../../utils/getLocalStFavorites';
+import { getAll } from '../../utils/getAll';
 
 // type FetchParams = { categoryId: string, page: string, orderId: string }
 // ODER
@@ -57,6 +59,13 @@ export const catalogSlice = createSlice({
           : { ...el, btn: !el.btn }
       );
     },
+    favoritesBtnChange: (state, obj: PayloadAction<cardItem>) => {
+      state.catalog = state.catalog.map((el) =>
+        Number(el.id) !== Number(obj.payload.id)
+          ? el
+          : { ...el, favoritesBtn: !el.favoritesBtn }
+      );
+    },
     priceChange: (state, price: PayloadAction<number>) => {
       state.price = price.payload;
     }
@@ -69,19 +78,40 @@ export const catalogSlice = createSlice({
     });
     builder.addCase(fetchCollection.fulfilled, (state, action) => {
 
+     
       let catalogLG: cardItem[] = getLocalStBasket();
+
+      let newNEw = getAll();
+      console.log(newNEw);
+
       for (let i = 0; i < action.payload.length; i++) {
-        const newItemIndex: number = catalogLG.findIndex(item => item.id === action.payload[i].id)
+        const newItemIndex: number = newNEw.findIndex(item => item.id === action.payload[i].id)
         
         if (newItemIndex >= 0) {     
-          state.catalog[i] = catalogLG[newItemIndex]
+          state.catalog[i] = newNEw[newItemIndex]
         }
         else {
           state.catalog[i] = action.payload[i]
         }
       }
+
+
+      // let favoritesLG: cardItem[] = getLocalStFavorites();
+      // console.log(favoritesLG);
+      // for (let i = 0; i < favoritesLG.length; i++) {
+      //   if(favoritesLG[i].favoritesBtn) {
+      //     return(
+      //       [{...state.catalog[i], favoritesBtn: true}]
+      //     )
+      //   }
+      // }
+
+
       state.status = Status.SUCCESS;
+
     });
+
+
     builder.addCase(fetchCollection.rejected, (state) => {
       state.status = Status.ERROR;
       state.catalog = []
@@ -103,7 +133,7 @@ export const catalogSlice = createSlice({
   // }
 });
 
-export const { categoryChange, sortChange, btnChange, priceChange } = catalogSlice.actions;
+export const { categoryChange, sortChange, btnChange, favoritesBtnChange, priceChange } = catalogSlice.actions;
 
 export default catalogSlice.reducer;
 

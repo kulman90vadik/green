@@ -6,11 +6,11 @@ import { fetchCollection } from "./redux/slices/catalogClise";
 import { RootState, useAppDispatch } from "./redux/store";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Basket from "./pages/Basket.tsx/Shop";
 import Shop from "./pages/Shop/Shop";
 import PageItem from "./pages/PageItem/PageItem";
 
 import { AuthContext } from './context/index';
+import Favorites from "./pages/Favorites/Favorites";
 
 
 const App = () => {
@@ -43,9 +43,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="login" element={<Login />} /> */}
-        {/* <Route path="news" element={<News />} /> */}
-        {/* <Route path="basket" element={<Basket />} /> */}
-        {/* <Route path="login" element={<Login />} /> */}
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/item/:id" element={<PageItem />} />
         {/* <Route path="*" element={<NotFound />} /> */}

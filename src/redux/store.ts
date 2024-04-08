@@ -5,12 +5,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import catalogReducer from '../redux/slices/catalogClise'
 import basketReducer from '../redux/slices/basketClise'
 import searchReducer from '../redux/slices/searchClise'
+import favoritesReducer from '../redux/slices/favoritesClise'
 // import loginReducer from '../redux/slices/loginClise'
 
 export const store = configureStore({
   reducer: {
     catalog: catalogReducer,
     basket: basketReducer,
+    favorites: favoritesReducer,
     search: searchReducer,
     // login: loginReducer
   },

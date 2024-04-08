@@ -17,7 +17,7 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 	const basket: cardItem[] = useSelector((state: RootState) => state.basket.basket)
 	const dispatch = useDispatch()
 	const [count, setCount] = useState(obj.counter)
-	const isMounted = useRef(false);
+	// const isMounted = useRef(false);
 
 
 // useEffect(() => {
@@ -35,12 +35,12 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 // useEffect(() => {
 	// if (isMounted.current) {
 
-		let newArr = basket.map((item: cardItem) => {
-			if(item.id === obj.id) { return {...item, counter: count}}
-			else { return item}
-		})
-		const json = JSON.stringify(newArr);
-		localStorage.setItem("cart", json)
+		// let newArr = basket.map((item: cardItem) => {
+		// 	if(item.id === obj.id) { return {...item, counter: count}}
+		// 	else { return item}
+		// })
+		// const json = JSON.stringify(newArr);
+		// localStorage.setItem("cart", json)
 	// }
 	// isMounted.current = true;
 // }, [basket, count]);

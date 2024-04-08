@@ -19,6 +19,7 @@ export type cardItem = {
   sale: number;
   new: boolean;
   btn: boolean;
+  favoritesBtn?: boolean;
   sizesCount: number;
   images: string[];
   sizes: string[];

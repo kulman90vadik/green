@@ -6,7 +6,8 @@ const links = [
   { link: '/', text: 'Home' },
   { link: 'shop', text: 'Shop' },
   { link: 'plantCare', text: 'Plant Care' },
-  { link: 'blogs', text: 'Blogs' }
+  { link: 'blogs', text: 'Blogs' },
+  { link: 'favorites', text: 'Favorites' }
 ]
 
 type Props = {

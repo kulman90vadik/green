@@ -98,6 +98,17 @@
     position: relative;
   }
 
+  &__icon-favorites {
+    margin-right: 20px;
+    position: relative;
+  }
+
+  &__svg-favorites {
+    width: 24px;
+    height: 24px;
+    fill: $green;
+  }
+
   &__count {
     position: absolute;
     top: -2px;

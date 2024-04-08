@@ -38,7 +38,6 @@ const PageItem: React.FC = () => {
     fetchCart();
   }, [fetchCart]);
 
-  console.log(" render cardItem");
 
   const btnChangePage = (obj: cardItem) => {
     dispatch(btnChange(obj)); // изменение кнопки в home
