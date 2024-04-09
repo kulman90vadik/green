@@ -8,23 +8,34 @@
   &__container {
     display: flex;
     justify-content: space-between;
+    @media (max-width: 895px) {
+      flex-direction: column;
+
+    }
   }
 
   &__left  {
     width: 75%;
     margin-right: 10px;
-   
+    @media (max-width: 895px) {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 15px;    
+    }
   }
 
   &__right {
     width: 20%;
     border: 1px solid $green;
+    @media (max-width: 895px) {
+      width: 100%;
+      padding: 20px;
+    }
   }
 
   &__top {
     display: flex;
     align-items: center;
-    // justify-content: space-between;
     padding: 20px 0;
     margin-bottom: 20px;
   }

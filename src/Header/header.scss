@@ -9,6 +9,9 @@
   top: 0;
   left: 0;
   background-color: $white;
+  @media (max-width: 650px) {
+    padding: 10px 0;
+  }
 
   &__burger {
     display: none;
@@ -17,11 +20,12 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      min-width: 40px;
       width: 40px;
       height: 34px;
       border-radius: 5px;
       background-color: $green;
-      z-index: 100;
+      z-index: 110;
       margin-left: 15px;
      
       span {
@@ -76,6 +80,11 @@
 
   &__logo {
     margin-right: 30px;
+    @media (max-width: 550px) {
+      width: 90px;
+      height: 40px;
+      margin-right: 7px;
+    }
   }
 
   &__search {

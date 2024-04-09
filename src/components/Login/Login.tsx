@@ -4,37 +4,35 @@ import { useState, useContext } from 'react'
 import Modal from '../Modal/Modal'
 import {AuthContext}  from "../../context/index";
 
-// type AuthContextType = {
-//   setIsAuth: (i: boolean) => void
-//   isAuth: boolean
-// }
 
 const Login = () => {
 	 // @ts-ignore:
 	const {isAuth, setIsAuth} = useContext(AuthContext);
-
 	const [modal, setModal] = useState(false)
-  
+	const [register, setRegister] = useState(true)
+
 
 	const loginHandler = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsAuth(true)
 		localStorage.setItem('auth', 'true')
-		// console.log('isAuth');
+		setModal(false)
+	}
+	const registerHandler = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setIsAuth(true)
+		localStorage.setItem('auth', 'true')
+		setModal(false)
 	}
 
 	const logout = () => {
-
 			if(isAuth) {
 				setIsAuth(false)
 				localStorage.removeItem('auth')
 			}
-			else {
-				setModal(true)
-			}
+			else {setModal(true)}
 	}
 
- 
 	return (
 		<>
 			<button 
@@ -72,25 +70,45 @@ const Login = () => {
 						strokeLinejoin='round'
 					/>
 				</svg>
-				{isAuth ? 'Logout' : 'Login'}
+				<span className={styles.text}>
+					{isAuth ? 'Logout' : 'Login'}
+				</span>
 				
 			</button>
 			<Modal openModal={modal} setModal={setModal}>
 				<div className={styles.content}>
 
-					<form className={styles.form} onSubmit={(e) => loginHandler(e)}>
-							{/* <label htmlFor="name" className={styles.label}>Name</label>
-							<input type="text" className={styles.input} name='name' placeholder='Name' /> */}
-							<label htmlFor="email" className={styles.label}>Email</label>
-							<input required type="email" className={styles.input} name='email' placeholder='Email' />
-							<label htmlFor="pass" className={styles.label}>Password</label>
-							<input required type="text" className={styles.input} name='pass' placeholder='Password' />
-							
-							<div className={styles.butoons}>
-								<button className={styles.btn}>Login</button>
-								<button className={styles.btn}>Registiren</button>
-							</div>
-					</form>
+					<div className={styles.auth}>
+						<button className={`${styles.authBtn} ${register ? styles.authBtnActive : ''}`} onClick={() => setRegister(true)}>Login</button>
+						<button className={`${styles.authBtn} ${!register ? styles.authBtnActive : ''}`} onClick={() => setRegister(false)}>Register</button>
+					</div>
+
+					{
+						register ?
+						<form className={styles.form} onSubmit={(e) => loginHandler(e)}>
+								{/* <label htmlFor="name" className={styles.label}>Name</label>
+								<input type="text" className={styles.input} name='name' placeholder='Name' /> */}
+								<label htmlFor="email" className={styles.label}>Email</label>
+								<input required type="email" className={styles.input} name='email' placeholder='Email' />
+								<label htmlFor="pass" className={styles.label}>Password</label>
+								<input required type="text" className={styles.input} name='pass' placeholder='Password' />
+								
+								<button className={styles.btn} >Login</button>
+		
+						</form>
+						:
+						<form className={styles.form} onSubmit={(e) => registerHandler(e)}>
+								<label htmlFor="name" className={styles.label}>Username</label>
+								<input type="text" className={styles.input} name='name' placeholder='Name' required/>
+								<label htmlFor="email" className={styles.label}>Email</label>
+								<input required type="email" className={styles.input} name='email' placeholder='Email' />
+								<label htmlFor="pass" className={styles.label}>Password</label>
+								<input required type="text" className={styles.input} name='pass' placeholder='Password' />
+								
+								<button className={styles.btn}>Register</button>
+		
+						</form>
+					}
 
 					<button className={styles.close} onClick={() => setModal(false)}>&#x2718;</button>
 				</div>

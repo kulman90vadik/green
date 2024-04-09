@@ -42,13 +42,16 @@ const Header = () => {
     <>
       <header 
         ref={refCloseSearch}
-        className={`header ${
-          location.pathname === "/login" ? "header--black" : "header"
-        }`}
+        className={`header ${location.pathname === "/login" ? "header--black" : ""}`}
       >
         <div className="header__container">
           <Link to="/" className="header__logo">
-            <img className="header__logo" src="/images/logo.svg" alt="Logo" />
+            
+            <picture>
+              <source media="(min-width:550px)" srcSet="/images/logo.svg" />          
+              <img className="header__logo" src="/images/Logo-mobil.svg" alt="Logo" />
+            </picture>
+
           </Link>
           <Navigation
             openNavigation={openNavigation}

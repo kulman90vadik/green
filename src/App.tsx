@@ -18,7 +18,9 @@ const App = () => {
 
   const dispatch = useAppDispatch();
   const category: number = useSelector((state: RootState) => state.catalog.category);
-  const sortId: string= useSelector((state: RootState) => state.catalog.sortId);
+  const sortId: string = useSelector((state: RootState) => state.catalog.sortId);
+  // const page: number = useSelector((state: RootState) => state.catalog.page);
+  // console.log(page);
   // const price: string= useSelector((state: RootState) => state.catalog.price);
 
   useEffect(() => {

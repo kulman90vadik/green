@@ -5,6 +5,7 @@ import { cardItem } from '../../../../models';
 import Card from '../Card/Card';
 import Loader from '../../../../Loader/Loader';
 import Sorting from '../Sorting/Sorting';
+import Pagination from '../../../../components/Pagination/Pagination';
 
 
 const Cards = () => {
@@ -46,6 +47,9 @@ const Cards = () => {
             )}
           </>
       </ul>
+
+      <Pagination />      
+
     </div>
   );
 }
