@@ -20,6 +20,9 @@ export const favoritesSlice = createSlice({
   
   reducers: {
     addToFavorites: (state, obj: PayloadAction<cardItem>) => {
+      
+      console.log(obj.payload);
+
       if (state.favorites.find((item) => item.id === obj.payload.id)) {
         state.favorites = state.favorites.filter((elem) => {
           return elem.id !== obj.payload.id;
@@ -35,6 +38,7 @@ export const favoritesSlice = createSlice({
     //   state.basket = state.basket.filter((elem) => elem.id !== obj.payload.id);
     //   state.count = state.count - 1;
     // }
+
   },
 });
 

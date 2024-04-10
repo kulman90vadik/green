@@ -13,7 +13,6 @@ export const fetchCollection = createAsyncThunk<cardItem[], Record<string, strin
   const { categoryId, sort, pageIndex } = params;
   const res = await axios.get<cardItem[]>(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?limit=5${pageIndex}${categoryId}${sort}`);
   const data = res.data;
-  console.log(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?limit=5${pageIndex}${categoryId}${sort}`)
   return data as cardItem[];
   }
 )

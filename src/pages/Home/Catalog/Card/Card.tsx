@@ -17,11 +17,19 @@ const Card: React.FC<Props> = ({ item }) => {
   const addBasket = (obj: cardItem) => {
     dispatch(addToBasket(obj));
     dispatch(btnChange(obj));
+
+    
   };
 
   const addFavorites = (obj: cardItem) => {
     dispatch(addToFavorites(obj));
-    dispatch(favoritesBtnChange(obj));
+    // if(item.btn) {
+    //   dispatch(favoritesBtnChange({...obj, btn: true}));
+    // }
+    // else {
+      dispatch(favoritesBtnChange(obj));
+    // }
+    // console.log(item.btn);
   };
 
   return (

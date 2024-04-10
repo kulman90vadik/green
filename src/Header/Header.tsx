@@ -37,7 +37,6 @@ const Header = () => {
     isMountedFavorites.current = true;
   }, [favorites]);
 
-  console.log(location.pathname);
 
   return (
     <>
