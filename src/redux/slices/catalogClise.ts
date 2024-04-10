@@ -19,13 +19,6 @@ export const fetchCollection = createAsyncThunk<cardItem[], Record<string, strin
 
 
 
-
-// let de = await getPagination()
-// console.log(de)
-
-
-
-
 export enum Status {
   LOADING = 'loading',
   SUCCESS = 'success',
