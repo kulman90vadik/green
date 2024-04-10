@@ -2,8 +2,7 @@
 
 .cards {
   width: 67%;
-  // height: 400px;
-  // background-color: tan;
+
   @media screen and (max-width: 1220px) {
     width: 72%;
   }
@@ -21,9 +20,6 @@
     @media screen and (max-width: 540px) {
       grid-template-columns: repeat(1, 1fr);
     }
-    // @media screen and (max-width: 720px) {
-    //   grid-template-columns: repeat(1, 1fr);
-    // }
   }
 
   &__error {

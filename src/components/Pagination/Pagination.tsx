@@ -1,38 +1,43 @@
-
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-
-
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { useDispatch } from 'react-redux'
+import { pageChange } from '../../redux/slices/catalogClise'
+import styles from './pagination.module.scss'
+import { useState } from 'react'
 
 const Pagination = () => {
-  const page: number = useSelector((state: RootState) => state.catalog.page);
-  const pageCount = Math.ceil( page / 5);
-  
-  let result = []
-  for(let i = 0; i < pageCount; i++) {
-    result.push(i + 1)
-  }
-  console.log(result)
-  // return result
+	const dispatch = useDispatch()
+	const [count, setCount] = useState(0)
+	const lengthCatalog: number = useSelector((state: RootState) => state.catalog.lengthCatalog)
+	const pageCount = Math.ceil(lengthCatalog / 5)
 
+	let result = []
+	for (let i = 0; i < pageCount; i++) result.push(i + 1)
 
-  return (
-    <ul className="pagination">
+	const changePage = (n: number, index: number) => {
+		dispatch(pageChange(n))
+		setCount(index)
+	}
 
-      {result.map(btn => {
-        return(
-          <li  key={btn}>
-          <button type="button">
-            {btn}
-          </button>
-
-          </li>
-        )
-      })}
-
-    </ul>
-  );
+	return (
+		<ul className={styles.pagination}>
+			{result.map((btn, index) => {
+				return (
+					<li className={styles.item} key={btn}>
+						<button
+							className={`${styles.btn} ${
+								count === index ? styles.active : ''
+							}`}
+							type='button'
+							onClick={() => changePage(btn, index)}
+						>
+							{btn}
+						</button>
+					</li>
+				)
+			})}
+		</ul>
+	)
 }
- 
-export default Pagination;
 
+export default Pagination

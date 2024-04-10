@@ -11,6 +11,8 @@ import PageItem from "./pages/PageItem/PageItem";
 
 import { AuthContext } from './context/index';
 import Favorites from "./pages/Favorites/Favorites";
+import NotFound from "./pages/NotFound/NotFound";
+import Blogs from "./pages/Blogs/Blogs";
 
 
 const App = () => {
@@ -19,8 +21,8 @@ const App = () => {
   const dispatch = useAppDispatch();
   const category: number = useSelector((state: RootState) => state.catalog.category);
   const sortId: string = useSelector((state: RootState) => state.catalog.sortId);
-  // const page: number = useSelector((state: RootState) => state.catalog.page);
-  // console.log(page);
+  const page: number = useSelector((state: RootState) => state.catalog.page);
+  const lengthCatalog: number = useSelector((state: RootState) => state.catalog.lengthCatalog);
   // const price: string= useSelector((state: RootState) => state.catalog.price);
 
   useEffect(() => {
@@ -31,10 +33,12 @@ const App = () => {
    }, [])
 
   useEffect( () => {  
-      let categoryId = category ? `category=${category}` : "";
+      let categoryId = category ? `&category=${category}` : "";
+      let pageIndex = page ? `&page=${page}` : "";
       let sort = sortId ? `&sortBy=price&order=${sortId}` : '';
-      dispatch(fetchCollection({categoryId, sort}));
-    }, [category, sortId])
+      dispatch(fetchCollection({categoryId, sort, pageIndex}));
+
+    }, [category, sortId, page, lengthCatalog])
 
 
 
@@ -47,8 +51,9 @@ const App = () => {
         {/* <Route path="login" element={<Login />} /> */}
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="/item/:id" element={<PageItem />} />
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
     </AuthContext.Provider>

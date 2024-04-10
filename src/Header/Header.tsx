@@ -37,13 +37,15 @@ const Header = () => {
     isMountedFavorites.current = true;
   }, [favorites]);
 
+  console.log(location.pathname);
 
   return (
     <>
       <header 
         ref={refCloseSearch}
-        className={`header ${location.pathname === "/login" ? "header--black" : ""}`}
+        className={`header ${location.pathname === "/*" ? "header--black" : ""}`}
       >
+
         <div className="header__container">
           <Link to="/" className="header__logo">
             

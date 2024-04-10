@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const links = [
   { link: '/', text: 'Home' },
   { link: 'shop', text: 'Shop' },
-  { link: 'plantCare', text: 'Plant Care' },
+  // { link: 'plantCare', text: 'Plant Care' },
   { link: 'blogs', text: 'Blogs' },
   { link: 'favorites', text: 'Favorites' }
 ]
