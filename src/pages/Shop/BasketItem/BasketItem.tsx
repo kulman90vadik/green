@@ -5,6 +5,7 @@ import {delCartBasket,delPrice,	minusTotalPrice,plusTotalPrice} from '../../../r
 import { btnChange } from '../../../redux/slices/catalogClise'
 import Counter from '../Counter/Counter'
 import { useState } from 'react'
+import { changeBtnCard } from '../../../redux/slices/favoritesClise'
 // import { RootState } from '../../../redux/store'
 // import { useSelector } from 'react-redux'
 // import { getLocalStBasket } from '../../../utils/getLocalStBasket'
@@ -63,6 +64,8 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 		dispatch(delCartBasket({ ...obj, sizesCount: 0 }))
 		dispatch(btnChange(obj))
 		dispatch(delPrice(priceItem))
+
+		dispatch(changeBtnCard(obj))
 	}
 
 	return (

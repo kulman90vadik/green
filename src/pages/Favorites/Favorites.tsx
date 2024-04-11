@@ -9,7 +9,7 @@ const Favorites = () => {
 		(state: RootState) => state.favorites.favorites
 	)
 
-	console.log(favorites)
+	// console.log(favorites)
 
 	return (
 		<section className='favorites'>

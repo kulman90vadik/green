@@ -4,7 +4,7 @@ import "./card.scss";
 import { addToBasket } from "../../../../redux/slices/basketClise";
 import { btnChange, favoritesBtnChange } from "../../../../redux/slices/catalogClise";
 import { Link } from "react-router-dom";
-import { addToFavorites } from "../../../../redux/slices/favoritesClise";
+import { addToFavorites, changeBtnCard } from "../../../../redux/slices/favoritesClise";
 
 type Props = {
   item: cardItem;
@@ -17,19 +17,14 @@ const Card: React.FC<Props> = ({ item }) => {
   const addBasket = (obj: cardItem) => {
     dispatch(addToBasket(obj));
     dispatch(btnChange(obj));
-
     
+    dispatch(changeBtnCard({...obj, btn: true}))
+  
   };
 
   const addFavorites = (obj: cardItem) => {
     dispatch(addToFavorites(obj));
-    // if(item.btn) {
-    //   dispatch(favoritesBtnChange({...obj, btn: true}));
-    // }
-    // else {
-      dispatch(favoritesBtnChange(obj));
-    // }
-    // console.log(item.btn);
+    dispatch(favoritesBtnChange(obj));
   };
 
   return (

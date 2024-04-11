@@ -6,7 +6,6 @@ type Props = {
 const IconSearch:React.FC<Props> = ({setOpenSearch}) => {
 
   const clickSearch = () => {
-    // console.log(window.innerHeight);
     window.scroll({
       top: window.innerHeight - 110,
       left: 0,
