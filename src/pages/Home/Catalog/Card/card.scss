@@ -9,7 +9,7 @@
     width: 100%;
     display: flex;
     height: 300px;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
     position: relative;
     background-color: #fbfbfb;
   }
@@ -120,6 +120,21 @@
         }
       }
     }
+    &--activefav {
+      background-color: #ffff7e;
+      .card__svg {
+        fill: $green;
+      }
+      
+      &:hover {
+        .card__svg {
+          fill: $green;
+          rect {
+            fill: $green;
+          }
+        }
+      }
+    }
   }
 
   &__svg {
@@ -172,6 +187,14 @@
     padding: 6px;
     transform: translateX(-120%);
     transition: transform 0.3 ease-in;
+  }
+
+  &__info {
+    padding-top: 10px;
+  }
+
+  &__info--active {
+    background-color: #ffff7e;
   }
 
 }

@@ -2,6 +2,13 @@
 
 .slider {
 
+  @media (max-width: 720px) {
+    background-image: url('images/decor.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .swiper  {
     height: 100vh;
   }
@@ -24,9 +31,7 @@
     @media (max-width: 1132px) {
       flex-direction: column;
     }
-    @media (max-width: 720px) {
 
-    }
   }
 
   &__subtitle {

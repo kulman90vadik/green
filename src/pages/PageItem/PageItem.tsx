@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { btnChange } from "../../redux/slices/catalogClise";
 import { addToBasket } from "../../redux/slices/basketClise";
 import Sizes from "./Sizes/Sizes";
+import { changeBtnCard } from "../../redux/slices/favoritesClise";
 
 const PageItem: React.FC = () => {
   const location = useLocation();
@@ -44,6 +45,9 @@ const PageItem: React.FC = () => {
     // dispatch(addToBasket(obj)); // добавление - удaление в корзину
     dispatch(addToBasket({...obj, sizesCount: countSize})); // добавление - удaление в корзину
     setBtnColor(!btnColor); // изменение кнопки в pageItem
+
+
+    dispatch(changeBtnCard({...obj, btn: true}))
   };
 
   return (

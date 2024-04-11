@@ -32,33 +32,37 @@ const Card: React.FC<Props> = ({ item }) => {
       <div className={`card__photo ${item.btn ? 'card__photo--green' : ''}`}>
         <img className="card__image" src={item.image} alt={item.title} />
       </div>
-      <span className="card__title">{item.title}</span>
-      <div className="card__price">
-        <div className="card__new-price">
-          {item.sale > 1
-            ? new Intl.NumberFormat("de-DE", {
-                style: "currency",
-                currency: "EUR",
-              }).format(item.price - (item.price * item.sale) / 100)
-            : null}
-        </div>
-        <div
-          className={`card__old-price ${
-            item.sale > 1 ? "card__old-price-line" : "card__new-price"
-          }`}
-        >
-          {new Intl.NumberFormat("de-DE", {
-            style: "currency",
-            currency: "EUR",
-          }).format(item.price)}
+      
+      <div className={`card__info ${item.favoritesBtn ? "card__info--active" : ""}`}>
+        <span className="card__title">{item.title}</span>
+        <div className="card__price">
+          <div className="card__new-price">
+            {item.sale > 1
+              ? new Intl.NumberFormat("de-DE", {
+                  style: "currency",
+                  currency: "EUR",
+                }).format(item.price - (item.price * item.sale) / 100)
+              : null}
+          </div>
+          <div
+            className={`card__old-price ${
+              item.sale > 1 ? "card__old-price-line" : "card__new-price"
+            }`}
+          >
+            {new Intl.NumberFormat("de-DE", {
+              style: "currency",
+              currency: "EUR",
+            }).format(item.price)}
+          </div>
         </div>
       </div>
+
       {item.new && <div className="card__new">new</div>}
       {item.sale > 1 && <div className="card__sale">{`-${item.sale}%`}</div>}
 
       <div className="card__icons">
         <button 
-         className={`card__icon btn-reset ${item.favoritesBtn ? "card__icon--active" : ""}`}
+         className={`card__icon btn-reset ${item.favoritesBtn ? "card__icon--activefav" : ""}`}
         type="button" onClick={() => addFavorites(item)}>
           <svg
             className="card__svg"
