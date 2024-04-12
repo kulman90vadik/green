@@ -19,7 +19,6 @@ const Card: React.FC<Props> = ({ item }) => {
     dispatch(btnChange(obj));
     
     dispatch(changeBtnCard({...obj, btn: true}))
-  
   };
 
   const addFavorites = (obj: cardItem) => {

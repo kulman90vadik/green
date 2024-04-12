@@ -4,19 +4,20 @@ import Header from "./Header/Header";
 import Home from "./pages/Home/Home";
 import { fetchCollection } from "./redux/slices/catalogClise";
 import { RootState, useAppDispatch } from "./redux/store";
-import { useEffect, useState } from "react";
+import {  useContext, useEffect} from "react";
 import { useSelector } from "react-redux";
 import Shop from "./pages/Shop/Shop";
 import PageItem from "./pages/PageItem/PageItem";
 
-import { AuthContext } from './context/index';
+// import { AuthProvider } from './context/index';
 import Favorites from "./pages/Favorites/Favorites";
 import NotFound from "./pages/NotFound/NotFound";
 import Blogs from "./pages/Blogs/Blogs";
+import { AuthContext } from "./context";
 
 
 const App = () => {
-  const[isAuth, setIsAuth] = useState(false)
+	const {setIsAuth} = useContext(AuthContext);
 
   const dispatch = useAppDispatch();
   const category: number = useSelector((state: RootState) => state.catalog.category);
@@ -24,39 +25,35 @@ const App = () => {
   const page: number = useSelector((state: RootState) => state.catalog.page);
   const lengthCatalog: number = useSelector((state: RootState) => state.catalog.lengthCatalog);
   // const price: string= useSelector((state: RootState) => state.catalog.price);
+  const limitBol: number = useSelector((state: RootState) => state.catalog.limit);
 
   useEffect(() => {
     if(localStorage.getItem('auth')) {
       setIsAuth(true)
     }
-    // setIsLoading(true)
    }, [])
 
   useEffect( () => {  
       let categoryId = category ? `&category=${category}` : "";
+      let limit = limitBol ? `limit=5` : "";
       let pageIndex = page ? `&page=${page}` : "";
       let sort = sortId ? `&sortBy=price&order=${sortId}` : '';
-      dispatch(fetchCollection({categoryId, sort, pageIndex}));
+      dispatch(fetchCollection({categoryId, sort, pageIndex, limit}));
 
-    }, [category, sortId, page, lengthCatalog])
-
-
+    }, [category, sortId, page, lengthCatalog, limitBol])
 
   return (
-    <AuthContext.Provider value={{isAuth, setIsAuth}}>
-
+   <>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="login" element={<Login />} /> */}
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/item/:id" element={<PageItem />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-
-    </AuthContext.Provider>
+   </>
   )
 }
 

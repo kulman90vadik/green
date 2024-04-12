@@ -1,4 +1,3 @@
-// 'use client'
 import styles from './login.module.scss'
 import { useState, useContext } from 'react'
 import Modal from '../Modal/Modal'
@@ -6,8 +5,8 @@ import {AuthContext}  from "../../context/index";
 
 
 const Login = () => {
-	 // @ts-ignore:
 	const {isAuth, setIsAuth} = useContext(AuthContext);
+
 	const [modal, setModal] = useState(false)
 	const [register, setRegister] = useState(true)
 

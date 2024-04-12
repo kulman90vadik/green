@@ -1,8 +1,17 @@
 @import "../../../scss-setings/vars.scss";
 
 .slider-image {
-  width: 50%;
+  min-width: 50%;
+  margin-right: 10px;
   display: flex;
+  @media screen and (max-width: 770px) {
+    margin-right: 0;
+    min-width: auto;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+  }
   &__photo {
     width: 400px;
     height: 411px;
@@ -15,6 +24,14 @@
         transform: scale(1.2);
         transition: transform 0.3s ease-in;
       }
+    }
+    @media screen and (max-width: 770px) {
+      width: 411px;
+      margin-bottom: 13px;
+    }
+    @media screen and (max-width: 450px) {
+      width: 350px;
+      height: 355px;
     }
   }
   
@@ -31,14 +48,28 @@
     flex-direction: column;
     justify-content: space-between;
     margin-right: 25px;
+    @media screen and (max-width: 770px) {
+      flex-direction: row;
+      height: 100px;
+      width: 411px;
+      margin-right: 0;
+      order: 1;
+    }
+    @media screen and (max-width: 450px) {
+      width: 350px;
+    }
   }
 
-  &__item{
+  &__item {
     width: 100px;
     height: 100px;
     display: flex;
     border: 1px solid $green;
     cursor: pointer;
+    @media screen and (max-width: 450px) {
+      width: 87px;
+      height: 87px;
+    }
   }
 
   &__small-img {

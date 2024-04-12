@@ -10,8 +10,8 @@ import  {getPagination}  from '../../utils/getPagination';
 // type FetchParams = Record <string, string>;
 
 export const fetchCollection = createAsyncThunk<cardItem[], Record<string, string>>('catalog/fetchCollectionStatus', async (params) => {
-  const { categoryId, sort, pageIndex } = params;
-  const res = await axios.get<cardItem[]>(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?limit=5${pageIndex}${categoryId}${sort}`);
+  const { categoryId, sort, pageIndex, limit } = params;
+  const res = await axios.get<cardItem[]>(`https://652cdf7ad0d1df5273efc824.mockapi.io/greenShop?${limit}${pageIndex}${categoryId}${sort}`);
   const data = res.data;
   return data as cardItem[];
   }
@@ -33,6 +33,7 @@ interface CatalogState {
   price: number;
   lengthCatalog: number;
   page: number;
+  limit: boolean;
 }
 
 const initialState: CatalogState = {
@@ -42,7 +43,8 @@ const initialState: CatalogState = {
   price: 0,
   sortId: '',
   lengthCatalog: await getPagination(),
-  page: 1
+  page: 1,
+  limit: true
 };
 
 
@@ -76,8 +78,15 @@ export const catalogSlice = createSlice({
     },
     priceChange: (state, price: PayloadAction<number>) => {
       state.price = price.payload;
+    },
+    limitChange: (state, limit: PayloadAction<boolean>) => {
+      state.limit = limit.payload;
     }
   },
+
+
+
+
 
   extraReducers: (builder) => {
     builder.addCase(fetchCollection.pending, (state) => {
@@ -111,7 +120,7 @@ export const catalogSlice = createSlice({
   }
 });
 
-export const { categoryChange, sortChange, btnChange, favoritesBtnChange, priceChange, pageChange } = catalogSlice.actions;
+export const { limitChange, categoryChange, sortChange, btnChange, favoritesBtnChange, priceChange, pageChange } = catalogSlice.actions;
 
 export default catalogSlice.reducer;
 

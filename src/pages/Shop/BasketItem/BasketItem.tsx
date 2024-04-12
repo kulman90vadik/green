@@ -81,14 +81,11 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 				}).format(obj.price - (obj.price * obj.sale) / 100)}
 			</span>
 
-{/* React.useMemo(() => {
 
-}, []) */}
 			<Counter
 				decrement={() => decrement(obj)}
 				increment={() => increment(obj)}
 				count={count}
-				// objId={obj.id}
 			/>
 
 			<span className='basket-cards__total basket-cards__col'>
@@ -110,6 +107,7 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 					</li>
 				))}
 			</ul>
+			
 			<div className='basket-cards__col'>
 				<button
 					className='basket-cards__btn btn-reset'
