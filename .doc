@@ -612,3 +612,5 @@ export const Details = memo(Page)
  fetchfun()
 }, [fetchfun])
 --------------------------------------------
+
+const navigation = useNavigate()

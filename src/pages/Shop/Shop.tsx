@@ -13,6 +13,8 @@ const Shop = () => {
 		(state: RootState) => state.basket.basket
 	)
 
+console.log(basket)
+
 	return (
 		<section className='basket'>
 			<div className='basket__container'>
@@ -42,6 +44,8 @@ const Shop = () => {
 								currency: 'EUR'
 							}).format(totalPrice)}
 						</div>
+
+						
 					</>
 				) : (
 					<img

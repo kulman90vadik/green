@@ -1,7 +1,7 @@
 import { cardItem } from '../../../models'
 import '../basket.scss'
 import { useDispatch } from 'react-redux'
-import {delCartBasket,delPrice,	minusTotalPrice,plusTotalPrice} from '../../../redux/slices/basketClise'
+import {delCartBasket,delPrice,	minusTotalPrice,plusTotalPrice, setCountSlice} from '../../../redux/slices/basketClise'
 import { btnChange } from '../../../redux/slices/catalogClise'
 import Counter from '../Counter/Counter'
 import { useState } from 'react'
@@ -53,11 +53,16 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 		if (count > limit) {
 			setCount(prev => prev - 1)
 			dispatch(minusTotalPrice(obj))
+
+			dispatch(setCountSlice({...obj, counter: count - 1}))
 		}
 	}
 	const increment = (obj: cardItem) => {
 		dispatch(plusTotalPrice(obj))
 		setCount(prev => prev + 1)
+		
+		dispatch(setCountSlice({...obj, counter: count + 1}))
+		
 	}
 
 	const delCart = (obj: cardItem, priceItem: number) => {
@@ -66,6 +71,8 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 		dispatch(delPrice(priceItem))
 
 		dispatch(changeBtnCard(obj))
+
+		// dispatch(setCountSlice({...obj, counter: 1}))
 	}
 
 	return (
@@ -81,11 +88,11 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 				}).format(obj.price - (obj.price * obj.sale) / 100)}
 			</span>
 
-
 			<Counter
 				decrement={() => decrement(obj)}
 				increment={() => increment(obj)}
-				count={count}
+				// count={count}
+				counter={obj.counter}
 			/>
 
 			<span className='basket-cards__total basket-cards__col'>

@@ -6,15 +6,13 @@ import './counter.scss'
 import React from 'react'
 
 type Props = {
-	count: number
-	// objId: number
+	// count: number
+	counter: number
 	increment: () => void
 	decrement: () => void
 }
 
-
-const Counter: React.FC<Props> = ({ decrement, increment, count }) =>  {
-
+const Counter: React.FC<Props> = ({ decrement, increment, counter }) =>  {
 	 console.log('ismenil')
 
 		return (
@@ -29,7 +27,7 @@ const Counter: React.FC<Props> = ({ decrement, increment, count }) =>  {
 							-
 						</button>
 						<button className='counter__number btn-reset' type='button'>
-							{count}
+							{counter}
 						</button>
 						<button
 							className='counter__btn btn-reset'

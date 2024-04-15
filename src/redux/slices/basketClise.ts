@@ -23,7 +23,11 @@ export const basketSlice = createSlice({
     addToBasket: (state, obj: PayloadAction<cardItem>) => {
       if (state.basket.find((item) => item.id === obj.payload.id)) {
         state.basket = state.basket.filter((elem) => {
-          return elem.id !== obj.payload.id;
+          if( elem.id !== obj.payload.id ) {
+            return (
+              elem
+            )
+          }
         });
         state.count = state.count - 1;
       } else {
@@ -34,14 +38,23 @@ export const basketSlice = createSlice({
           counter: 1
         }]; //????
 
+
         state.totalPrice = state.basket.reduce((acc, currentValue) =>{
           return acc + currentValue.price - (currentValue.price * currentValue.sale) / 100
         }, 0)
       }
     },
     delCartBasket: (state, obj:PayloadAction<cardItem>) => {
-      state.basket = state.basket.filter((elem) => elem.id !== obj.payload.id);
+      state.basket = state.basket.filter((elem) => {
+        if( elem.id !== obj.payload.id ) {
+          return (
+            {...elem, counter: 1}
+          )
+        }
+      });
+
       state.count = state.count - 1;
+
     },
 
     plusTotalPrice: (state, obj:PayloadAction<cardItem>) => {
@@ -54,6 +67,20 @@ export const basketSlice = createSlice({
 
     delPrice: (state, num:PayloadAction<number>) => {
       state.totalPrice = state.totalPrice - num.payload
+    },
+
+
+    setCountSlice: (state, obj:PayloadAction<cardItem>) => {
+      state.basket = state.basket.map((elem) => {
+        if(elem.id === obj.payload.id) {
+          return obj.payload
+        }
+        else {
+          return elem
+        }
+      });
+      console.log(state.basket);
+      // state.totalPrice = state.totalPrice - num.payload
     }
   },
 });
@@ -62,6 +89,7 @@ export const { addToBasket, delCartBasket,
   plusTotalPrice,
   minusTotalPrice,
   delPrice,
+  setCountSlice
 } = basketSlice.actions;
 
 export default basketSlice.reducer;

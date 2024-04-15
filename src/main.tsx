@@ -7,6 +7,10 @@ import { AuthProvider } from './context'
 
 const root = document.getElementById('root')
 
+
+
+
+
 if (root) {
 	const rootElem = ReactDOM.createRoot(root)
 	rootElem.render(

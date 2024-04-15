@@ -18,10 +18,11 @@ export const getCartLSTotal = (): number => {
   // return data ? JSON.parse(data) : [];
   if(data) {
     let price = JSON.parse(data).reduce((accum: number, obj: cardItem) => {
-      return accum + obj.price - (obj.price * obj.sale) / 100
+      return accum + (obj.price - (obj.price * obj.sale) / 100) * obj.counter
     }, 0);
     return price
   } else {
     return 0;
   }
 }
+

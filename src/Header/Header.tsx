@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import Navigation from "./Navigarion/Navigation";
 import { Link, useLocation } from "react-router-dom";
 import "./header.scss";
@@ -7,9 +7,11 @@ import IconSearch from "../components/IconSearch/IconSearch";
 import { RootState } from "../redux/store";
 import { useSelector } from "react-redux";
 import Login from "../components/Login/Login";
-
+import { AuthContext } from "../context";
 
 const Header = () => {
+  const {setIsAuth} = useContext(AuthContext);
+
   const [openNavigation, setOpenNavigation] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const location = useLocation();
@@ -18,6 +20,12 @@ const Header = () => {
   const countFavorites: number = useSelector((state: RootState) => state.favorites.countFavorites)
   const count = useSelector((state: RootState) => state.basket.count);
   const refCloseSearch = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if(localStorage.getItem('auth')) {
+      setIsAuth(true)
+    }
+   }, [])
 
   const isMounted = useRef(false);
   useEffect(() => {
