@@ -6,9 +6,6 @@ import { btnChange } from '../../../redux/slices/catalogClise'
 import Counter from '../Counter/Counter'
 import { useState } from 'react'
 import { changeBtnCard } from '../../../redux/slices/favoritesClise'
-// import { RootState } from '../../../redux/store'
-// import { useSelector } from 'react-redux'
-// import { getLocalStBasket } from '../../../utils/getLocalStBasket'
 
 type BasketProps = {
 	obj: cardItem
@@ -18,34 +15,6 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 	// const basket: cardItem[] = useSelector((state: RootState) => state.basket.basket)
 	const dispatch = useDispatch()
 	const [count, setCount] = useState(obj.counter)
-	// const isMounted = useRef(false);
-
-
-// useEffect(() => {
-// 	const basketlo: cardItem[] = getLocalStBasket()
-// 	let id = basketlo.map((item) => {
-// 		if(obj.id === item.id) {
-// 			console.log(item.counter);
-// 			return item.counter
-// 		}	
-// 	})
-// 	// console.log(id);
-// }, [basket, count])
-
-
-// useEffect(() => {
-	// if (isMounted.current) {
-
-		// let newArr = basket.map((item: cardItem) => {
-		// 	if(item.id === obj.id) { return {...item, counter: count}}
-		// 	else { return item}
-		// })
-		// const json = JSON.stringify(newArr);
-		// localStorage.setItem("cart", json)
-	// }
-	// isMounted.current = true;
-// }, [basket, count]);
-
 
 
 	let limit = 1
@@ -69,10 +38,7 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 		dispatch(delCartBasket({ ...obj, sizesCount: 0 }))
 		dispatch(btnChange(obj))
 		dispatch(delPrice(priceItem))
-
 		dispatch(changeBtnCard(obj))
-
-		// dispatch(setCountSlice({...obj, counter: 1}))
 	}
 
 	return (
@@ -91,7 +57,6 @@ const BasketItem: React.FC<BasketProps> = ({ obj }) => {
 			<Counter
 				decrement={() => decrement(obj)}
 				increment={() => increment(obj)}
-				// count={count}
 				counter={obj.counter}
 			/>
 

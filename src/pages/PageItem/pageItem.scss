@@ -35,6 +35,10 @@
     font-weight: 600;
   }
 
+  &__desc {
+    margin-bottom: 20px;
+  }
+
   &__price {
     font-weight: 700;
     color: $green;
@@ -57,7 +61,7 @@
   }
   &__btn--active {
     background-color: $green;
-    color: white;
+    color: $white;
   }
    
 }

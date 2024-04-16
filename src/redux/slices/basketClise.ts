@@ -17,7 +17,6 @@ const initialState: BasketState = {
 export const basketSlice = createSlice({
   name: "basket",
   initialState,
-
   
   reducers: {
     addToBasket: (state, obj: PayloadAction<cardItem>) => {
@@ -36,11 +35,10 @@ export const basketSlice = createSlice({
           ...obj.payload,
           btn: true,
           counter: 1
-        }]; //????
-
+        }]; 
 
         state.totalPrice = state.basket.reduce((acc, currentValue) =>{
-          return acc + currentValue.price - (currentValue.price * currentValue.sale) / 100
+          return acc + (currentValue.price - (currentValue.price * currentValue.sale) / 100) * currentValue.counter
         }, 0)
       }
     },
@@ -79,17 +77,11 @@ export const basketSlice = createSlice({
           return elem
         }
       });
-      console.log(state.basket);
-      // state.totalPrice = state.totalPrice - num.payload
     }
   },
 });
 
 export const { addToBasket, delCartBasket, 
-  plusTotalPrice,
-  minusTotalPrice,
-  delPrice,
-  setCountSlice
-} = basketSlice.actions;
+  plusTotalPrice, minusTotalPrice, delPrice, setCountSlice} = basketSlice.actions;
 
 export default basketSlice.reducer;

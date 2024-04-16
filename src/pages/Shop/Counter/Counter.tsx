@@ -1,19 +1,12 @@
-// import { useSelector } from 'react-redux'
-// import { cardItem } from '../../../models'
-// import { RootState } from '../../../redux/store'
 import './counter.scss'
-// import { useEffect, useMemo, useRef } from 'react'
-import React from 'react'
 
 type Props = {
-	// count: number
 	counter: number
 	increment: () => void
 	decrement: () => void
 }
 
 const Counter: React.FC<Props> = ({ decrement, increment, counter }) =>  {
-	 console.log('ismenil')
 
 		return (
 			<>
@@ -42,4 +35,4 @@ const Counter: React.FC<Props> = ({ decrement, increment, counter }) =>  {
 		)
 	}
 
-export default React.memo(Counter)
+export default Counter

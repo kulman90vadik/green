@@ -2,14 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { cardItem } from "../../models";
 import "./pageItem.scss";
-import "./Sizes/sizes.scss";
 
 import axios from "axios";
 import SliderImage from "./SliderImage/SliderImage";
 import { useDispatch } from "react-redux";
 import { btnChange } from "../../redux/slices/catalogClise";
 import { addToBasket } from "../../redux/slices/basketClise";
-import Sizes from "./Sizes/Sizes";
 import { changeBtnCard } from "../../redux/slices/favoritesClise";
 
 const PageItem: React.FC = () => {
@@ -21,8 +19,6 @@ const PageItem: React.FC = () => {
   const [btnColor, setBtnColor] = useState(state.btn);
   const [cardItem, setCardItem] = useState<cardItem>();
   const [loading, setLoading] = useState("");
-  // const [countSize, setCountSize] = useState<number>(0);
-  const [countSize, setCountSize] = useState<number>(0);
 
   const fetchCart = useCallback(async () => {
     setLoading("loading");
@@ -40,13 +36,12 @@ const PageItem: React.FC = () => {
   }, [fetchCart]);
 
 
+
   const btnChangePage = (obj: cardItem) => {
     dispatch(btnChange(obj)); // изменение кнопки в home
     // dispatch(addToBasket(obj)); // добавление - удaление в корзину
-    dispatch(addToBasket({...obj, sizesCount: countSize})); // добавление - удaление в корзину
+    dispatch(addToBasket(obj)); // добавление - удaление в корзину
     setBtnColor(!btnColor); // изменение кнопки в pageItem
-
-
     dispatch(changeBtnCard({...obj, btn: true}))
   };
 
@@ -72,9 +67,6 @@ const PageItem: React.FC = () => {
                 }).format(cardItem.price)}
               </span>
               <div className="page-item__desc">{cardItem.description}</div>
-
-              <Sizes sizes={cardItem.sizes} setCountSize={setCountSize} />
-
               <button
                 className={`btn-reset page-item__btn ${
                   btnColor ? "page-item__btn--active" : ""

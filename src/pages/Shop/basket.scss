@@ -14,7 +14,7 @@
   }
 
   &__left  {
-    width: 75%;
+    width: 65%;
     margin-right: 10px;
     @media (max-width: 895px) {
       width: 100%;
@@ -24,15 +24,30 @@
   }
 
   &__right {
-    width: 20%;
-    border: 1px solid $green;
+    width: 30%;
     @media (max-width: 895px) {
       width: 100%;
       padding: 20px;
     }
   }
 
+  &__submit {
+    background-color: $green;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    font-size: 15px;
+    font-weight: 700;
+    color: $white;
+    transition: background-color 0.3s ease-in;
+    &:hover {
+      background-color: rgba($green, 0.7);
+    }
+  }
+
   &__top {
+    border-bottom: 1px solid $green;
     display: flex;
     align-items: center;
     padding: 20px 0;
@@ -43,6 +58,7 @@
   }
 
   &__top-item {
+    font-weight: 600;
     width: calc(100% / 5);
     &:last-child {
       width: 10%;
@@ -59,13 +75,97 @@
     top: 50%;
     width: 65%;
     height: 50%;
+   
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__coupon {
+    font-weight: 400;
+    color: #3D3D3D;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  &__input {
+    display: flex;
+    margin-bottom: 10px;
+    height: 40px;
+    input {
+      width: 70%;
+      outline: transparent;
+      padding-left: 5px;
+      border: 1px solid $green;
+      transition:  box-shadow 0.3s ease-in;
+      &::placeholder {
+        color: #3d3d3d;
+        font-size: 14px;
+      }
+      &:focus {
+        box-shadow:  inset 2px 0px 9px $green;
+      }
+    }
+  }
+  
+  &__apply {
+    color: $white;
+    font-weight: 500;
+    width: 30%;
+    background-color: $green;
+    transition: background-color 0.3s ease-in;
+    &:hover {
+      background-color: rgba($green, 0.7);
+    }
+  }
+
+  &__list {
+    margin-bottom: 20px;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 15px;
+    color: #3D3D3D;
+  }
+  
+  &__price {
+    color: #3D3D3D;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+  
+  &__total {
+    color: #3D3D3D;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  &__sumprice {
+    font-weight: 700;
+    color: $green;
+    font-size: 18px;
+
   }
 
   .basket-cards {
-    border: 1px solid $green;
-    @media (max-width: 720px) {
-      border: none;
-    }
     &__item {
       display: flex;
       align-items: center;
@@ -159,6 +259,12 @@
 
     &__icon {
       margin: auto;
+      path {
+        transition: stroke 0.3s ease-in;
+      }
+      &:hover path {
+        stroke: $red;
+      }
       @media (max-width: 720px) {
         position: absolute;
         top: 10px;
@@ -168,7 +274,6 @@
 
     &__price {
       @media (max-width: 720px) {
-        // display: block;
         margin-bottom: 10px;
         text-align: center;
         font-size: 24px;
@@ -183,6 +288,7 @@
     }
 
   }
+
 
 
 }
