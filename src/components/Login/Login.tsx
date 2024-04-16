@@ -72,7 +72,7 @@ const Login = () => {
 				<span className={styles.text}>
 					{isAuth ? 'Logout' : 'Login'}
 				</span>
-				
+			
 			</button>
 			<Modal openModal={modal} setModal={setModal}>
 				<div className={styles.content}>

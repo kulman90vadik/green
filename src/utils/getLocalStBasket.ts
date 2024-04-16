@@ -11,8 +11,6 @@ export const getLocalStBasketLenght = (): number => {
   return data ? JSON.parse(data).length : 0;
 }
 
-
-
 export const getCartLSTotal = (): number => {
   const data = localStorage.getItem('cart');
   // return data ? JSON.parse(data) : [];

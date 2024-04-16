@@ -1,11 +1,16 @@
 import { useSelector } from 'react-redux'
 import { cardItem } from '../../models'
+import styles from '../../components/Login/login.module.scss'
+import stylesshop from '../../components/Modal/modalShop.module.scss'
 import './basket.scss'
 
 import BasketItem from './BasketItem/BasketItem'
 import { RootState } from '../../redux/store'
+import Modal from '../../components/Modal/Modal'
+import { useState } from 'react'
 
 const Shop = () => {
+	const [modal, setModal] = useState(false)
 	const totalPrice: number = useSelector(
 		(state: RootState) => state.basket.totalPrice
 	)
@@ -14,6 +19,7 @@ const Shop = () => {
 	)
 	const clickSubmitHandler = (e: React.FormEvent) => {
 		e.preventDefault();
+		setModal(true)
 	}
 
 	return (
@@ -84,7 +90,31 @@ const Shop = () => {
 							</form>
 						</div>
 
-
+					  <Modal openModal={modal} setModal={setModal}>
+							<div className={styles.content}>
+								<img className={stylesshop.smallImg} src="/images/thank-you.svg" alt="thank-you.png" />
+								<span className={stylesshop.title}>Your order has been received</span>
+								<ul className={stylesshop.list}>
+									{basket.map((item: cardItem) => {
+											return (
+												<li key={item.id} className={stylesshop.item}>
+													<img className={stylesshop.image} src={item.image} alt={item.title} />
+													<span className={stylesshop.subtitle}>{item.title}</span>
+													<span className={stylesshop.counter}>{`(x${item.counter})`}</span>
+													<span className={stylesshop.price}>
+													{new Intl.NumberFormat('de-DE', {
+														style: 'currency',
+														currency: 'EUR'
+														}).format((item.price - (item.price * item.sale) / 100) * item.counter)}
+													</span>
+												</li>
+											)
+										})}
+								</ul>
+								
+								<button className={styles.close} onClick={() => setModal(false)}>&#x2718;</button>
+							</div>
+						</Modal>
 					
 					</>
 				) : (

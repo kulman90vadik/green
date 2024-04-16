@@ -12,6 +12,7 @@ import PageItem from "./pages/PageItem/PageItem";
 import Favorites from "./pages/Favorites/Favorites";
 import NotFound from "./pages/NotFound/NotFound";
 import Blogs from "./pages/Blogs/Blogs";
+import Footer from "./Footer/Footer";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/item/:id" element={<PageItem />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
    </>
   )
 }

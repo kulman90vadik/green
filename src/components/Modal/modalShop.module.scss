@@ -1,0 +1,47 @@
+@import '../../scss-setings/vars.scss';
+
+.list {
+  width: 100%;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+}
+
+.item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.smallImg {
+  margin-bottom: 15px;
+}
+
+.title {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-weight: 500;
+  width: 100px;
+  text-align: center;
+}
+
+.counter {
+  color: #ccc;
+}
+
+.price {
+  // color: $green;
+  font-weight: 600;
+  font-size: 20px;
+}

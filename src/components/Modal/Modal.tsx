@@ -28,5 +28,3 @@ export default function Modal({openModal, setModal, children}: {
 	)
 }
 
-
-// export default Modal
