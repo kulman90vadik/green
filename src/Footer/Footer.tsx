@@ -1,4 +1,4 @@
-import { Camera, Facebook } from 'lucide-react';
+import { Facebook } from 'lucide-react';
 
 import styles from './footer.module.scss';
 import footerData from './footerData';
