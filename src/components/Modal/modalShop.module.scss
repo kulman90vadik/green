@@ -45,3 +45,22 @@
   font-weight: 600;
   font-size: 20px;
 }
+
+.box {
+  padding: 20px 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total {
+  color: #000;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.totalPrice {
+  font-weight: 700;
+  font-size: 22px;
+}

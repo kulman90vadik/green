@@ -19,7 +19,15 @@
         justify-content: center;
       }
     }
+  }
 
+  &__box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    @media screen and (max-width: 770px) {
+      justify-content: center;
+    }
   }
 
   .message {
@@ -37,20 +45,25 @@
 
   &__desc {
     margin-bottom: 20px;
+    font-size: 21px;
+    font-style: italic;
   }
 
   &__price {
     font-weight: 700;
     color: $green;
     font-size: 22px;
-    @media screen and (max-width: 770px)  {
-      margin-bottom: 14px;
-      display: block;
-    }
+    margin-right: 15px;
+  }
+
+  &__old-price {
+    color: $red;
+    text-decoration: line-through;
   }
 
   &__btn {
     border: 1px solid $green;
+    width: 200px;
     color: $green;
     font-weight: 600;
     padding: 4px 20px;

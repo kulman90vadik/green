@@ -111,6 +111,15 @@ const Shop = () => {
 											)
 										})}
 								</ul>
+								<div className={stylesshop.box}>
+									<span className={stylesshop.total}>Total</span>
+									<span className={stylesshop.totalPrice}>
+									{new Intl.NumberFormat('de-DE', {
+										style: 'currency',
+										currency: 'EUR'
+									}).format(totalPrice + 15)}	
+									</span>	
+								</div>
 								
 								<button className={styles.close} onClick={() => setModal(false)}>&#x2718;</button>
 							</div>

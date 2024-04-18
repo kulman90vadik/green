@@ -16,6 +16,7 @@ const Counter: React.FC<Props> = ({ decrement, increment, counter }) =>  {
 							className='counter__btn btn-reset'
 							type='button'
 							onClick={decrement}
+							disabled={counter === 1}
 						>
 							-
 						</button>

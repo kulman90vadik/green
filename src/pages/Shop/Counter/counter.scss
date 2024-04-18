@@ -11,6 +11,14 @@
     background-color: $green;
     border-radius: 50%;
     color: $white;
+    transition: background-color 0.3s ease-in;
+    &:hover {
+      background-color: rgba($green, 0.7);
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: auto;
+    }
   }
 
   &__number {

@@ -1,0 +1,39 @@
+
+
+.subtitle {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 20px;
+  @media screen and (max-width: 450px) {
+    text-align: center;
+  }
+}
+
+.link {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  background-color: #fff;
+  border: 1px solid #46A35833;
+  border-radius: 3px;
+  transition: all 0.3s ease-in;
+  &:hover {
+    background-color: #46A35833;
+  }
+}
+
+.list {
+  display: flex;
+  margin-bottom: 20px;
+  @media screen and (max-width: 450px) {
+    justify-content: center;
+  }
+}
+
+.item {
+  &:not(:last-child) {
+    margin-right: 9px;
+  }
+}
